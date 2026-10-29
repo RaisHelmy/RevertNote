@@ -14,7 +14,7 @@ export function AdminLayout() {
             Users
           </NavLink>
           <NavLink to="/admin/users/new">Create user</NavLink>
-          <Link to="/">My journal</Link>
+          <Link to="/journal">My journal</Link>
         </nav>
         <span className="admin-spacer" />
         <span className="admin-who">@{user?.username}</span>

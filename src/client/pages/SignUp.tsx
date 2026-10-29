@@ -33,7 +33,7 @@ export function SignUp() {
       const { confirm: _confirm, ...payload } = form;
       const r = await api<{ user: PublicUser }>('/auth/signup', { method: 'POST', json: payload });
       setUser(r.user);
-      navigate('/', { replace: true });
+      navigate('/journal', { replace: true });
     } catch (err) {
       setError((err as Error).message);
     } finally {

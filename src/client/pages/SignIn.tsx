@@ -24,7 +24,7 @@ export function SignIn() {
         json: { identifier, password, phoneCountry: DEFAULT_COUNTRY },
       });
       setUser(r.user);
-      navigate('/', { replace: true });
+      navigate('/journal', { replace: true });
     } catch (err) {
       setError((err as Error).message);
     } finally {

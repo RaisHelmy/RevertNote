@@ -6,15 +6,16 @@ import { CreateUser } from './pages/admin/CreateUser';
 import { UserDetail } from './pages/admin/UserDetail';
 import { Users } from './pages/admin/Users';
 import { Journal } from './pages/Journal';
+import { Landing } from './pages/Landing';
 import { SignIn } from './pages/SignIn';
 import { SignUp } from './pages/SignUp';
 
 function Gate({ need, children }: { need: 'guest' | 'user' | 'admin'; children: ReactNode }) {
   const { user, loading } = useAuth();
   if (loading) return <div className="boot" aria-busy="true" />;
-  if (need === 'guest') return user ? <Navigate to="/" replace /> : children;
+  if (need === 'guest') return user ? <Navigate to="/journal" replace /> : children;
   if (!user) return <Navigate to="/signin" replace />;
-  if (need === 'admin' && user.role !== 'admin') return <Navigate to="/" replace />;
+  if (need === 'admin' && user.role !== 'admin') return <Navigate to="/journal" replace />;
   return children;
 }
 
@@ -25,7 +26,8 @@ export function App() {
         <Routes>
           <Route path="/signin" element={<Gate need="guest"><SignIn /></Gate>} />
           <Route path="/signup" element={<Gate need="guest"><SignUp /></Gate>} />
-          <Route path="/" element={<Gate need="user"><Journal /></Gate>} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/journal" element={<Gate need="user"><Journal /></Gate>} />
           <Route path="/admin" element={<Gate need="admin"><AdminLayout /></Gate>}>
             <Route index element={<Users />} />
             <Route path="users/new" element={<CreateUser />} />

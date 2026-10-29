@@ -8,6 +8,8 @@ Worker) · Cloudflare D1.
 
 ## Features
 
+- **Landing page** at `/` (the journal itself lives at `/journal`). Visitors see "Begin Day 01" → sign up and a
+  "Sign in" link; signed-in users see "Open my journal".
 - **Sign up** with username, email, phone (country picker, Malaysia by default) and password. There is no email
   or phone verification. **Sign in** with username, email *or* phone.
 - **Journal:** 40 days of prompts and verses, a written note and a drawing per day, autosave, progress

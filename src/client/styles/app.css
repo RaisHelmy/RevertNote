@@ -7,6 +7,8 @@ button:disabled{cursor:default;opacity:.55}
 /* ---------- auth ---------- */
 .auth-screen{position:relative;min-height:100dvh;inset:auto}
 .auth-card{margin:24px 0}
+.auth-home{position:absolute;top:18px;left:20px;z-index:2;font-family:var(--f-display);font-size:16px;color:#F7F0DF;text-decoration:none;opacity:.8}
+.auth-home:hover{opacity:1}
 .auth-form{margin-top:22px;text-align:left}
 .auth-form label{margin-top:14px}
 .auth-form label:first-child{margin-top:0}
