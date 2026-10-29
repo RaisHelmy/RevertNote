@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="A private 40-day journal for new Muslims, with the reflections from Welcome Home.">
+<meta name="theme-color" content="#0C231E">
+<title>Welcome Home — My 40-Day Journal</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230C231E'/%3E%3Cpath d='M32 50V22c0-5 3-9 8-9-3 3-4 6-4 10 0 6 4 10 10 10v17' fill='none' stroke='%23C2A15C' stroke-width='2.4' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='50' r='2' fill='%23C2A15C'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Karla:wght@400;500;600&family=Marcellus&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0C231E;
+  --night-2:#133A30;
+  --night-3:#1B4A3C;
+  --paper:#F3EDDE;
+  --paper-2:#FBF7EC;
+  --paper-3:#FCF8EE;
+  --ink:#22302A;
+  --ink-soft:#5C6860;
+  --sage:#93A79A;
+  --gold:#C2A15C;
+  --gold-deep:#A57F3C;
+  --rust:#8C3B2E;
+  --line:rgba(34,48,42,.10);
+  --f-display:'Marcellus','Iowan Old Style',Georgia,serif;
+  --f-serif:'Newsreader',Georgia,'Times New Roman',serif;
+  --f-ui:'Karla','Segoe UI',system-ui,-apple-system,sans-serif;
+  --f-ar:'Amiri','Traditional Arabic',serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--f-ui);
+  color:var(--ink);
+  background:
+    radial-gradient(1100px 560px at 82% -8%, #FFFAEE 0%, rgba(255,250,238,0) 62%),
+    radial-gradient(900px 520px at 4% 108%, #EBE2CC 0%, rgba(235,226,204,0) 58%),
+    var(--paper);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  min-height:100dvh;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+textarea{font:inherit}
+svg{display:block}
+::selection{background:rgba(194,161,92,.28)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+[hidden]{display:none !important}
+body.lock{overflow:hidden}
+
+/* ---------- left rail ---------- */
+.rail{
+  position:fixed;inset:0 auto 0 0;width:300px;z-index:70;
+  display:flex;flex-direction:column;
+  padding:26px 18px 18px;
+  color:var(--paper);
+  background:
+    radial-gradient(520px 300px at 50% -4%, rgba(194,161,92,.13), rgba(194,161,92,0) 70%),
+    linear-gradient(180deg,#123A30 0%,#0C261F 46%,#0A201A 100%);
+  overflow:hidden;
+}
+.rail::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23C2A15C' stroke-opacity='0.10' stroke-width='0.8'%3E%3Crect x='28' y='28' width='40' height='40'/%3E%3Crect x='28' y='28' width='40' height='40' transform='rotate(45 48 48)'/%3E%3Ccircle cx='48' cy='48' r='3.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:96px 96px;
+}
+.rail::after{
+  content:"";position:absolute;top:0;right:0;width:1px;height:100%;
+  background:linear-gradient(180deg,rgba(194,161,92,0),rgba(194,161,92,.38),rgba(194,161,92,0));
+}
+.rail > *{position:relative;z-index:1}
+.rail-close{display:none;position:absolute;top:14px;right:12px;width:32px;height:32px;place-items:center;border-radius:50%;color:rgba(246,239,223,.7)}
+.rail-close:hover{background:rgba(255,255,255,.07);color:#F6EFDF}
+.rail-close svg{width:15px;height:15px}
+.bismillah{font-family:var(--f-ar);font-size:17px;line-height:1.9;color:var(--gold);opacity:.92}
+.wordmark{font-family:var(--f-display);font-size:29px;line-height:1.05;color:#F7F0DF;margin-top:5px;letter-spacing:.005em}
+.tagline{font-size:9px;letter-spacing:.23em;text-transform:uppercase;color:var(--sage);margin-top:9px}
+.greeting{font-family:var(--f-serif);font-style:italic;font-size:14px;line-height:1.5;color:rgba(246,239,223,.68);margin:17px 2px 18px}
+.progress{
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(194,161,92,.16);
+  border-radius:9px;padding:11px 13px 12px;
+}
+.progress-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:10.5px;letter-spacing:.03em;color:rgba(246,239,223,.62)}
+.progress-row b{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:.06em}
+.progress-track{height:3px;border-radius:3px;background:rgba(255,255,255,.08);margin-top:9px;overflow:hidden}
+.progress-fill{display:block;height:100%;width:0;border-radius:3px;background:linear-gradient(90deg,#8F6F33,var(--gold));transition:width .55s cubic-bezier(.2,.7,.2,1)}
+.rail-nav{flex:1;overflow-y:auto;margin:16px -6px 0;padding:0 6px 14px;scrollbar-width:thin;scrollbar-color:rgba(194,161,92,.28) transparent}
+.rail-nav::-webkit-scrollbar{width:8px}
+.rail-nav::-webkit-scrollbar-thumb{background:rgba(194,161,92,.22);border-radius:8px}
+.rail-week{margin:14px 4px 5px}
+.rail-week:first-child{margin-top:2px}
+.rw-num{display:block;font-size:9px;letter-spacing:.21em;text-transform:uppercase;color:var(--gold);opacity:.82}
+.rw-theme{display:block;font-family:var(--f-serif);font-style:italic;font-size:11.5px;color:rgba(147,167,154,.82);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.day-item{
+  display:flex;align-items:center;gap:9px;width:100%;
+  padding:7px 9px;border-radius:7px;border-left:2px solid transparent;
+  color:rgba(246,239,223,.68);text-align:left;
+  transition:background .18s,color .18s,border-color .18s;
+}
+.day-item:hover{background:rgba(255,255,255,.045);color:#F7F0DF}
+.day-item[aria-current="true"]{background:rgba(194,161,92,.11);color:#FCF6E7;border-left-color:var(--gold)}
+.d-num{flex:none;width:20px;font-family:var(--f-display);font-size:12px;color:var(--gold);opacity:.72}
+.d-title{flex:1;min-width:0;font-size:12px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d-dot{flex:none;width:5px;height:5px;border-radius:50%;border:1px solid rgba(246,239,223,.22);transition:background .3s,border-color .3s,box-shadow .3s}
+.d-dot.on{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 3px rgba(194,161,92,.15)}
+.rail-foot{border-top:1px solid rgba(194,161,92,.16);padding-top:12px;margin-top:4px}
+.rail-actions{display:flex;gap:2px}
+.rail-actions button{display:inline-flex;align-items:center;gap:6px;padding:6px 8px;border-radius:6px;font-size:11px;color:rgba(246,239,223,.6);transition:background .18s,color .18s}
+.rail-actions button:hover{background:rgba(255,255,255,.05);color:#F7F0DF}
+.rail-actions svg{width:13px;height:13px}
+.privacy{display:flex;align-items:center;gap:6px;margin:7px 8px 0;font-size:10px;color:rgba(147,167,154,.7)}
+.privacy svg{width:11px;height:11px;flex:none}
+.scrim{display:none}
+
+/* ---------- main ---------- */
+.main{margin-left:300px;min-height:100dvh}
+.topbar{
+  position:sticky;top:0;z-index:40;
+  display:flex;align-items:center;gap:11px;
+  height:57px;padding:0 26px;
+  background:rgba(243,237,222,.84);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(34,48,42,.075);
+}
+.menu-btn{display:none;width:32px;height:32px;place-items:center;border-radius:7px;color:var(--ink-soft)}
+.menu-btn:hover{background:rgba(34,48,42,.06);color:var(--ink)}
+.menu-btn svg{width:17px;height:17px}
+.day-label{font-size:9.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+.topbar-spacer{flex:1}
+.today{font-family:var(--f-serif);font-style:italic;font-size:13px;color:var(--ink-soft);white-space:nowrap}
+.ghost-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 12px;border-radius:7px;
+  border:1px solid rgba(34,48,42,.13);
+  background:rgba(255,255,255,.34);
+  font-size:11.5px;letter-spacing:.02em;color:var(--ink);
+  transition:background .18s,border-color .18s;
+}
+.ghost-btn:hover{background:#FFFDF6;border-color:rgba(165,127,60,.5)}
+.ghost-btn svg{width:14px;height:14px}
+.pager{display:flex;gap:6px}
+.pager button{width:31px;height:31px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(34,48,42,.13);background:rgba(255,255,255,.3);color:var(--ink);transition:background .18s,border-color .18s}
+.pager button:hover:not(:disabled){background:#FFFDF6;border-color:var(--gold)}
+.pager button:disabled{opacity:.32;cursor:default}
+.pager svg{width:14px;height:14px}
+.page{max-width:920px;margin:0 auto;padding:28px 30px 64px}
+
+/* niche */
+.niche{position:relative;isolation:isolate;min-height:372px;padding:96px 56px 78px;text-align:center;color:var(--paper)}
+.arch-bg{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:visible}
+.niche::before{
+  content:"";position:absolute;left:50%;top:0;width:min(560px,90%);height:270px;
+  transform:translateX(-50%);z-index:-1;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,214,140,.11),rgba(255,214,140,0));
+}
+.niche-content{position:relative;max-width:610px;margin:0 auto}
+.eyebrow{margin:0 0 14px;font-size:9.5px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);opacity:.95}
+#dayTitle{
+  margin:0;font-family:var(--f-display);font-weight:400;
+  font-size:clamp(29px,3.5vw,42px);line-height:1.14;letter-spacing:.004em;
+  color:#F8F1E0;text-wrap:balance;
+}
+.prompt-block{margin:24px auto 0;max-width:545px}
+.prompt-label{margin:0 0 7px;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:rgba(194,161,92,.82)}
+.prompt{margin:0;font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:19.5px;line-height:1.55;color:rgba(246,239,223,.8);text-wrap:pretty}
+.lamp{
+  position:absolute;top:0;left:50%;width:46px;height:66px;
+  transform:translateX(-50%);color:var(--gold);opacity:.52;
+  transition:opacity .9s ease,filter .9s ease;pointer-events:none;
+}
+.lamp svg{width:100%;height:100%;overflow:visible}
+.lamp .halo{opacity:.16;transition:opacity 1s ease}
+.lamp .flame{fill:#796C4D;transition:fill 1s ease}
+.lamp .body-fill{fill:rgba(255,240,205,.05)}
+.niche.lit .lamp{opacity:1;filter:drop-shadow(0 0 11px rgba(255,214,140,.3))}
+.niche.lit .lamp .halo{opacity:1;animation:breathe 7s ease-in-out infinite}
+.niche.lit .lamp .flame{fill:#FFD98A}
+@keyframes breathe{0%,100%{opacity:.72}50%{opacity:1}}
+
+/* verse plaque */
+.plaque{
+  position:relative;z-index:2;max-width:640px;margin:-38px auto 0;
+  padding:24px 36px 21px;text-align:center;
+  background:var(--paper-2);
+  border:1px solid rgba(165,127,60,.32);border-radius:9px;
+  box-shadow:0 26px 50px -38px rgba(12,35,30,.55);
+}
+.plaque-mark{position:absolute;top:-5px;left:50%;width:9px;height:9px;background:var(--paper-2);border:1px solid var(--gold);transform:translateX(-50%) rotate(45deg)}
+.plaque blockquote{margin:0;font-family:var(--f-serif);font-style:italic;font-size:17.5px;line-height:1.65;color:#3D4B43;text-wrap:pretty}
+.plaque figcaption{margin-top:12px;font-size:9px;letter-spacing:.19em;text-transform:uppercase;color:var(--gold-deep)}
+.plaque figcaption::before{content:"— ";letter-spacing:0}
+
+/* notebook */
+.notebook{
+  margin-top:30px;padding:18px 30px 26px;
+  background:var(--paper-2);
+  border:1px solid rgba(34,48,42,.09);border-radius:12px;
+  box-shadow:0 24px 50px -44px rgba(12,35,30,.5);
+}
+.nb-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(34,48,42,.09)}
+.tabs{display:flex;gap:22px}
+.tab{position:relative;display:inline-flex;align-items:center;gap:7px;padding:6px 1px 11px;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);transition:color .18s}
+.tab:hover{color:var(--ink)}
+.tab svg{width:14px;height:14px}
+.tab[aria-selected="true"]{color:var(--ink)}
+.tab[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:2px;background:var(--gold)}
+.tab-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);margin-left:1px}
+.save-state{display:flex;align-items:center;gap:7px;padding-bottom:9px;font-size:10.5px;color:var(--ink-soft);white-space:nowrap}
+.save-state .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);transition:background .2s}
+.save-state[data-state="saving"] .dot{animation:pulse 1s ease-in-out infinite}
+.save-state[data-state="error"]{color:var(--rust)}
+.save-state[data-state="error"] .dot{background:var(--rust)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.pane{position:relative}
+#paneWrite{padding-top:9px}
+.sheet{position:relative;max-width:660px;margin:0 auto;padding:2px 0 4px 56px}
+.sheet::before{content:"";position:absolute;left:42px;top:6px;bottom:8px;width:1px;background:rgba(165,127,60,.27)}
+#noteInput{
+  display:block;width:100%;min-height:378px;
+  padding:4px 2px 0 0;border:0;border-radius:0;
+  resize:none;outline:none;background-color:transparent;
+  background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,rgba(34,48,42,.085) 31px,rgba(34,48,42,.085) 32px);
+  background-attachment:local;
+  font-family:var(--f-serif);font-size:17.5px;line-height:32px;color:var(--ink);
+  caret-color:var(--gold-deep);
+}
+#noteInput::placeholder{color:#A69D89;font-style:italic}
+#noteInput:focus-visible{outline:none}
+#paneDraw{padding-top:12px}
+.draw-tools{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+.tools-group{display:flex;align-items:center;gap:5px}
+.tools-sep{width:1px;height:20px;background:rgba(34,48,42,.12);margin:0 6px}
+.tools-spacer{flex:1;min-width:4px}
+.swatch{width:20px;height:20px;border-radius:50%;background:var(--sw);box-shadow:inset 0 0 0 1px rgba(0,0,0,.09);transition:transform .16s,box-shadow .16s}
+.swatch:hover{transform:scale(1.1)}
+.swatch[aria-pressed="true"]{box-shadow:0 0 0 2px var(--paper-2),0 0 0 3.5px var(--gold)}
+.width{width:30px;height:30px;display:grid;place-items:center;border-radius:7px;color:var(--ink-soft);transition:background .16s,color .16s}
+.width i{display:block;border-radius:50%;background:currentColor}
+.width[aria-pressed="true"]{background:rgba(34,48,42,.07);color:var(--ink)}
+.tool{width:30px;height:30px;display:grid;place-items:center;border-radius:7px;color:var(--ink-soft);transition:background .16s,color .16s}
+.tool:hover:not(:disabled){background:rgba(34,48,42,.06);color:var(--ink)}
+.tool:disabled{opacity:.3;cursor:default}
+.tool.is-active{background:rgba(165,127,60,.14);color:var(--gold-deep)}
+.tool svg{width:15px;height:15px}
+.clear-btn{width:auto;padding:0 10px;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-soft)}
+.clear-btn.armed{color:var(--rust)}
+.canvas-wrap{position:relative;height:342px;border-radius:9px;background:var(--paper-3);box-shadow:inset 0 0 0 1px rgba(34,48,42,.08);overflow:hidden}
+#sketch{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}
+.draw-hint{position:absolute;inset:0;display:grid;place-items:center;margin:0;padding:20px;pointer-events:none;text-align:center;font-family:var(--f-serif);font-style:italic;font-size:15px;color:#A69D89;transition:opacity .35s}
+.canvas-wrap.has-ink .draw-hint{opacity:0}
+.colophon{max-width:660px;margin:34px auto 0;text-align:center;font-size:11px;line-height:1.75;color:#8B8372}
+.colophon em{font-family:var(--f-serif);font-style:italic}
+
+/* page transition */
+.page.swap .niche-content,.page.swap .plaque,.page.swap .notebook{animation:rise .42s cubic-bezier(.2,.7,.2,1) both}
+.page.swap .plaque{animation-delay:.045s}
+.page.swap .notebook{animation-delay:.085s}
+@keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+
+/* toast */
+.toast{
+  position:fixed;left:50%;bottom:24px;z-index:130;
+  max-width:min(460px,calc(100vw - 32px));
+  padding:11px 16px;border-radius:8px;
+  background:#0E2A24;color:#F7F0DF;
+  border:1px solid rgba(194,161,92,.3);
+  box-shadow:0 18px 40px -20px rgba(0,0,0,.6);
+  font-size:12.5px;line-height:1.5;text-align:center;
+  opacity:0;transform:translate(-50%,14px);pointer-events:none;
+  transition:opacity .25s,transform .25s;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* welcome */
+.welcome{
+  position:fixed;inset:0;z-index:120;
+  display:grid;place-items:center;padding:22px;overflow:auto;
+  background:radial-gradient(900px 620px at 50% -6%,#1B4A3D 0%,#0E2A23 48%,#081B16 100%);
+}
+.welcome::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.7;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23C2A15C' stroke-opacity='0.12' stroke-width='0.8'%3E%3Crect x='28' y='28' width='40' height='40'/%3E%3Crect x='28' y='28' width='40' height='40' transform='rotate(45 48 48)'/%3E%3Ccircle cx='48' cy='48' r='3.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:96px 96px;
+}
+.welcome-card{
+  position:relative;z-index:1;width:min(548px,100%);
+  padding:36px 42px 30px;text-align:center;
+  background:var(--paper-2);border-radius:16px;
+  box-shadow:0 60px 120px -50px rgba(0,0,0,.75),0 0 0 1px rgba(194,161,92,.34);
+  animation:welcomeIn .62s cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes welcomeIn{from{opacity:0;transform:translateY(14px) scale(.992)}to{opacity:1;transform:none}}
+.w-bismillah{font-family:var(--f-ar);font-size:17px;line-height:1.9;color:var(--gold-deep)}
+.w-lamp{width:36px;height:52px;margin:12px auto 4px;color:var(--gold);filter:drop-shadow(0 0 9px rgba(255,214,140,.3))}
+.welcome h2{margin:10px 0 0;font-family:var(--f-display);font-weight:400;font-size:42px;line-height:1.06;color:var(--ink)}
+.w-lede{margin:10px 0 0;font-family:var(--f-serif);font-style:italic;font-size:17px;color:var(--ink-soft)}
+.w-body{margin:18px auto 0;max-width:404px;font-size:13.5px;line-height:1.75;color:#5A665E;text-wrap:pretty}
+.welcome form{margin-top:24px;text-align:left}
+.welcome label{display:block;margin-bottom:7px;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.welcome input{
+  width:100%;padding:12px 14px;border-radius:8px;
+  border:1px solid #D8CDB4;background:#FFFDF7;
+  font-family:var(--f-serif);font-size:17px;color:var(--ink);text-align:center;
+}
+.welcome input::placeholder{color:#AAA18D;font-style:italic}
+.welcome input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(194,161,92,.18)}
+.btn-primary{
+  width:100%;margin-top:12px;padding:14px 16px;border-radius:8px;
+  background:var(--night-2);color:#F7F0DF;
+  font-size:11px;letter-spacing:.17em;text-transform:uppercase;
+  transition:background .2s,transform .06s;
+}
+.btn-primary:hover{background:var(--night-3)}
+.btn-primary:active{transform:translateY(1px)}
+.btn-quiet{display:inline-block;margin-top:15px;font-size:12.5px;color:var(--gold-deep);text-decoration:underline;text-underline-offset:3px}
+.btn-quiet:hover{color:var(--ink)}
+.w-foot{margin:20px 0 0;font-size:10.5px;color:#8E8674}
+
+/* print */
+.print-sheet{display:none}
+@media print{
+  @page{margin:16mm 15mm}
+  body{background:#fff;color:#111}
+  .app,.welcome,.toast,.scrim{display:none !important}
+  .print-sheet{display:block;max-width:170mm;margin:0 auto;font-family:Georgia,serif;color:#111}
+  .print-meta{font-family:Arial,sans-serif;font-size:9pt;letter-spacing:.16em;text-transform:uppercase;color:#6b6b63;margin:0 0 8pt}
+  .print-day{font-size:22pt;line-height:1.15;margin:0 0 14pt;font-weight:400}
+  .print-prompt-label{font-family:Arial,sans-serif;font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#8a6a2f;margin:0 0 4pt}
+  .print-prompt{font-size:12pt;font-style:italic;line-height:1.5;margin:0 0 12pt}
+  .print-verse{font-size:11.5pt;font-style:italic;line-height:1.55;margin:0;padding:8pt 0 8pt 12pt;border-left:2px solid #c2a15c}
+  .print-ref{font-family:Arial,sans-serif;font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:#8a6a2f;margin:6pt 0 18pt 14pt}
+  .print-note-h{font-family:Arial,sans-serif;font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#6b6b63;margin:0 0 6pt;font-weight:600}
+  .print-note{font-size:11pt;line-height:1.7;white-space:pre-wrap;margin:0 0 16pt;padding:10pt 12pt;border:1px solid #ddd7c8;border-radius:4pt}
+  .print-sketch{max-width:100%;max-height:110mm;display:block;margin:0 auto 14pt;border:1px solid #ddd7c8;border-radius:4pt}
+  .print-empty{font-size:10pt;font-style:italic;color:#777}
+  .print-foot{font-family:Arial,sans-serif;font-size:8pt;color:#999;margin-top:20pt;border-top:1px solid #eee;padding-top:6pt}
+}
+
+/* responsive */
+@media (max-width:1100px){
+  .rail{width:272px}
+  .main{margin-left:272px}
+}
+@media (max-width:940px){
+  .rail{transform:translateX(-100%);width:min(320px,86vw);transition:transform .32s cubic-bezier(.2,.7,.2,1);box-shadow:0 0 80px rgba(0,0,0,.35)}
+  .rail.open{transform:none}
+  .rail-close{display:grid}
+  .bismillah{padding-right:42px}
+  .main{margin-left:0}
+  .menu-btn{display:grid}
+  .scrim{display:block;position:fixed;inset:0;z-index:65;background:rgba(6,20,16,.5);opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
+  .scrim.open{opacity:1;pointer-events:auto}
+}
+@media (max-width:700px){
+  .topbar{height:54px;padding:0 13px;gap:8px}
+  .today{display:none}
+  .ghost-btn span{display:none}
+  .ghost-btn{padding:8px}
+  .page{padding:18px 12px 48px}
+  .niche{min-height:340px;padding:82px 22px 60px}
+  .lamp{width:36px;height:52px}
+  #dayTitle{font-size:30px}
+  .prompt-block{margin-top:20px}
+  .prompt{font-size:17px}
+  .plaque{margin:-28px 6px 0;padding:20px 20px 18px}
+  .plaque blockquote{font-size:15.5px}
+  .notebook{margin-top:22px;padding:14px 15px 20px}
+  .tabs{gap:16px}
+  .save-state{font-size:9.5px}
+  .sheet{padding-left:36px}
+  .sheet::before{left:25px}
+  #noteInput{
+    min-height:300px;font-size:16.5px;line-height:30px;
+    background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 29px,rgba(34,48,42,.085) 29px,rgba(34,48,42,.085) 30px);
+  }
+  .canvas-wrap{height:282px}
+  .colophon{font-size:10.5px}
+  .welcome{padding:14px}
+  .welcome-card{padding:28px 22px 24px}
+  .welcome h2{font-size:34px}
+  .w-body{font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="scrim" id="scrim"></div>
+
+  <aside class="rail" id="rail" aria-label="Journal days">
+    <button class="rail-close" id="railClose" aria-label="Close day list">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="brand">
+      <div class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <div class="wordmark">Welcome Home</div>
+      <div class="tagline">A private 40-day journal</div>
+      <p class="greeting" id="greeting">Assalamu’alaikum.</p>
+    </div>
+
+    <div class="progress" aria-label="Journal progress">
+      <div class="progress-row"><span id="litCount">0 of 40 days lit</span><b id="litPct">0%</b></div>
+      <div class="progress-track"><span class="progress-fill" id="barFill"></span></div>
+    </div>
+
+    <nav class="rail-nav" id="dayList" aria-label="Days 1 to 40"></nav>
+
+    <div class="rail-foot">
+      <div class="rail-actions">
+        <button type="button" id="backupBtn" title="Download all notes as a backup file">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 19h14"/></svg>
+          <span>Back up</span>
+        </button>
+        <button type="button" id="restoreBtn" title="Restore notes from a backup file">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V9m0 0L8 13m4-4l4 4M5 5h14"/></svg>
+          <span>Restore</span>
+        </button>
+        <input type="file" id="restoreInput" accept="application/json,.json" hidden>
+      </div>
+      <p class="privacy">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+        <span>Saved in this browser only.</span>
+      </p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="Open day list" aria-expanded="false" aria-controls="rail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <span class="day-label" id="dayLabel">Day 01 / 40</span>
+      <span class="topbar-spacer"></span>
+      <span class="today" id="todayLabel"></span>
+      <button class="ghost-btn" id="printBtn" title="Print this day with your note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V4h10v5M7 18H5a2 2 0 01-2-2v-4a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2h-2"/><rect x="7" y="14" width="10" height="6" rx="1"/></svg>
+        <span>Print this day</span>
+      </button>
+      <div class="pager">
+        <button id="prevBtn" aria-label="Previous day" title="Previous day (left arrow)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"/></svg>
+        </button>
+        <button id="nextBtn" aria-label="Next day" title="Next day (right arrow)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="page" id="page">
+      <section class="niche" id="niche" aria-labelledby="dayTitle">
+        <svg class="arch-bg" viewBox="0 0 860 520" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="archFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#174136"/>
+              <stop offset=".55" stop-color="#0F2E26"/>
+              <stop offset="1" stop-color="#0C231E"/>
+            </linearGradient>
+          </defs>
+          <path d="M0 520V190C0 92 190 16 430 0C670 16 860 92 860 190V520Z" fill="url(#archFill)"/>
+          <path d="M16 520V192C16 100 200 26 430 12C660 26 844 100 844 192V520" fill="none" stroke="#C2A15C" stroke-opacity=".5" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <div class="lamp" aria-hidden="true">
+          <svg viewBox="0 0 64 92">
+            <defs>
+              <radialGradient id="glowNiche" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FFE3A6" stop-opacity=".5"/>
+                <stop offset="55%" stop-color="#FFD98A" stop-opacity=".14"/>
+                <stop offset="100%" stop-color="#FFD98A" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle class="halo" cx="32" cy="54" r="30" fill="url(#glowNiche)"/>
+            <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M32 0v19"/>
+              <circle cx="32" cy="22" r="2.6"/>
+              <path d="M23 30h18l3 6H20z"/>
+              <path class="body-fill" d="M24 36h16c5 4 8 10 8 17 0 12-8 21-16 25-8-4-16-13-16-25 0-7 3-13 8-17z"/>
+              <path d="M26 78h12l2 5H24z"/>
+            </g>
+            <circle class="flame" cx="32" cy="55" r="4.4"/>
+            <circle cx="32" cy="55" r="1.7" fill="#0C231E" opacity=".35"/>
+          </svg>
+        </div>
+        <div class="niche-content">
+          <p class="eyebrow" id="eyebrow">Week One · Day 01</p>
+          <h1 id="dayTitle">What Happens When You Accept Islam?</h1>
+          <div class="prompt-block">
+            <p class="prompt-label">Reflection</p>
+            <p class="prompt" id="prompt"></p>
+          </div>
+        </div>
+      </section>
+
+      <figure class="plaque">
+        <span class="plaque-mark" aria-hidden="true"></span>
+        <blockquote id="verse"></blockquote>
+        <figcaption id="verseRef"></figcaption>
+      </figure>
+
+      <section class="notebook" aria-label="Your note for this day">
+        <div class="nb-head">
+          <div class="tabs" role="tablist" aria-label="How you want to write">
+            <button class="tab" id="tabWrite" role="tab" aria-selected="true" aria-controls="paneWrite" data-tab="write">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1z"/><path d="M14 7l3 3"/></svg>
+              Write
+            </button>
+            <button class="tab" id="tabDraw" role="tab" aria-selected="false" aria-controls="paneDraw" data-tab="draw">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c3-6 5 4 8-2s4-6 8-2"/><path d="M4 20h16"/></svg>
+              Draw
+              <span class="tab-dot" id="drawTabDot" hidden></span>
+            </button>
+          </div>
+          <div class="save-state" id="saveState" data-state="saved">
+            <span class="dot" aria-hidden="true"></span>
+            <span id="saveText">Saved on this device</span>
+          </div>
+        </div>
+
+        <div class="pane" id="paneWrite" role="tabpanel" aria-labelledby="tabWrite">
+          <div class="sheet">
+            <textarea id="noteInput" spellcheck="true" placeholder="Start anywhere — a sentence, a prayer, a question you’re afraid to ask." aria-label="Your written note for this day"></textarea>
+          </div>
+        </div>
+
+        <div class="pane" id="paneDraw" role="tabpanel" aria-labelledby="tabDraw" hidden>
+          <div class="draw-tools">
+            <div class="tools-group" role="group" aria-label="Ink colour">
+              <button class="swatch" style="--sw:#23302A" data-color="#23302A" aria-label="Ink black" aria-pressed="true"></button>
+              <button class="swatch" style="--sw:#2F6B57" data-color="#2F6B57" aria-label="Pine green" aria-pressed="false"></button>
+              <button class="swatch" style="--sw:#A57F3C" data-color="#A57F3C" aria-label="Antique gold" aria-pressed="false"></button>
+              <button class="swatch" style="--sw:#A2604A" data-color="#A2604A" aria-label="Terracotta" aria-pressed="false"></button>
+            </div>
+            <span class="tools-sep" aria-hidden="true"></span>
+            <div class="tools-group" role="group" aria-label="Stroke width">
+              <button class="width" data-width="2" aria-label="Thin stroke" aria-pressed="false"><i style="width:4px;height:4px"></i></button>
+              <button class="width" data-width="4" aria-label="Medium stroke" aria-pressed="true"><i style="width:7px;height:7px"></i></button>
+              <button class="width" data-width="7" aria-label="Thick stroke" aria-pressed="false"><i style="width:10px;height:10px"></i></button>
+            </div>
+            <span class="tools-sep" aria-hidden="true"></span>
+            <button class="tool" id="eraserBtn" aria-label="Eraser" aria-pressed="false" title="Eraser">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l7-7 6 6-7 7H6l-2-2z"/><path d="M9 20h11"/></svg>
+            </button>
+            <button class="tool" id="undoBtn" aria-label="Undo last stroke" title="Undo" disabled>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h9a6 6 0 010 12h-3"/></svg>
+            </button>
+            <button class="tool clear-btn" id="clearBtn" aria-label="Clear this drawing">Clear</button>
+            <span class="tools-spacer"></span>
+          </div>
+          <div class="canvas-wrap" id="canvasWrap">
+            <canvas id="sketch" aria-label="Drawing page for this day"></canvas>
+            <p class="draw-hint">Draw here with a finger, stylus, or mouse.<br>It is saved with this day.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="colophon">
+        <p>Prompts and verses from <em>Welcome Home — A 40-Day Companion for New Muslims</em> (Hidayah Centre Foundation).<br>Your notes are your own, and stay on this device.</p>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle" hidden>
+  <div class="welcome-card">
+    <div class="w-bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="w-lamp" aria-hidden="true">
+      <svg viewBox="0 0 64 92">
+        <defs>
+          <radialGradient id="glowWelcome" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFE3A6" stop-opacity=".55"/>
+            <stop offset="60%" stop-color="#FFD98A" stop-opacity=".12"/>
+            <stop offset="100%" stop-color="#FFD98A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle class="halo" cx="32" cy="54" r="30" fill="url(#glowWelcome)"/>
+        <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M32 0v19"/>
+          <circle cx="32" cy="22" r="2.6"/>
+          <path d="M23 30h18l3 6H20z"/>
+          <path d="M24 36h16c5 4 8 10 8 17 0 12-8 21-16 25-8-4-16-13-16-25 0-7 3-13 8-17z" fill="rgba(255,240,205,.05)"/>
+          <path d="M26 78h12l2 5H24z"/>
+        </g>
+        <circle class="flame" cx="32" cy="55" r="4.4" fill="#FFD98A"/>
+        <circle cx="32" cy="55" r="1.7" fill="#FBF7EC" opacity=".55"/>
+      </svg>
+    </div>
+    <h2 id="welcomeTitle">Welcome home.</h2>
+    <p class="w-lede">A quiet place for your first forty days.</p>
+    <p class="w-body">You’ve been given forty reflections to walk through. This is where your own words live beside them — type a thought, or draw one. Nothing is graded, and no one else can read it.</p>
+    <form id="welcomeForm">
+      <label for="nameInput">What should we call you?</label>
+      <input id="nameInput" type="text" maxlength="40" autocomplete="given-name" placeholder="Your first name (optional)">
+      <button class="btn-primary" type="submit">Open my journal</button>
+    </form>
+    <button class="btn-quiet" type="button" id="skipWelcome">Just open the journal</button>
+    <p class="w-foot">Your notes are saved in this browser, on this device.</p>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="print-sheet" id="printSheet"></div>
+
+<noscript>
+  <div style="padding:40px;text-align:center;font-family:Georgia,serif">
+    This journal needs JavaScript to keep your notes. Please enable it in your browser.
+  </div>
+</noscript>
+
+<script>
+(function(){
+  'use strict';
+
+  const DAYS = [
+    {n:1, w:1, t:`What Happens When You Accept Islam?`, p:`Write about the moment you first said the Shahada. How did it feel inside your heart?`, v:`So whoever Allah wills to guide, He opens their heart to Islam.`, r:`Surah Al-An'am 6:125`},
+    {n:2, w:1, t:`A Clean Slate: Allah's Mercy`, p:`How does it feel to know that your past is completely forgiven and you have been given a completely clean slate today?`, v:`Say, ‘O My servants who have transgressed against themselves, do not despair of the mercy of Allah. Indeed, Allah forgives all sins.’`, r:`Surah Az-Zumar 39:53`},
+    {n:3, w:1, t:`Islam is a Journey, Not a Race`, p:`What is one area where you feel rushed, and how can you remind yourself to slow down and trust the process?`, v:`And keep yourself patient [by being] with those who call upon their Lord in the morning and the evening...`, r:`Surah Al-Kahf 18:28`},
+    {n:4, w:1, t:`Regulating Excitement — Islam Feels Like a Cloud Nine`, p:`What emotions am I carrying today? What brings me the most excitement about this new path today? How can I turn this joy into a daily routine?`, v:`In the bounty of Allah and in His mercy — in that let them rejoice...`, r:`Surah Yunus 10:58`},
+    {n:5, w:1, t:`Overcoming Fear & Uncertainty`, p:`What is your biggest fear right now, and how can you hand that worry over to Allah?`, v:`So do not fear them, but fear Me, if you are [indeed] believers.`, r:`Surah Ali 'Imran 3:175`},
+    {n:6, w:1, t:`Understanding Loneliness & Finding Solace`, p:`Write down a moment today where you felt lonely. How can you use that quiet moment to turn to Allah in prayer?`, v:`Unquestionably, by the remembrance of Allah hearts are assured.`, r:`Surah Ar-Ra'd 13:28`},
+    {n:7, w:1, t:`Navigating Initial Family Concerns`, p:`What is one way you can show extra love and helpfulness to your family members today?`, v:`And We have enjoined upon man goodness to his parents...`, r:`Surah Al-Ankabut 29:8`},
+    {n:8, w:2, t:`Managing Information Overload`, p:`What is one piece of religious information that overwhelmed you today? Keep note of it but let it go for now and focus strictly on Allah's love.`, v:`Allah does not charge a soul except [with that within] its capacity.`, r:`Surah Al-Baqarah 2:286`},
+    {n:9, w:2, t:`Understanding Tawhid`, p:`How does it simplify your life to know that you only have to seek the approval of One?`, v:`And your God is one God. There is no deity except Him, the Entirely Merciful, the Especially Merciful.`, r:`Surah Al-Baqarah 2:163`},
+    {n:10, w:2, t:`The Power of Bismillah`, p:`Practice saying Bismillah before eating, drinking, or walking today. Does it change your experience of these actions?`, v:`Recite in the name of your Lord who created.`, r:`Surah Al-Alaq 96:1`},
+    {n:11, w:2, t:`Talking to Allah: What is Salah?`, p:`How does your perception of prayer change when you view it as an intimate meeting with Allah rather than a chore?`, v:`And establish prayer for My remembrance.`, r:`Surah Taha 20:14`},
+    {n:12, w:2, t:`Learning Al-Fatihah & Reading Qur'an`, p:`What feelings or thoughts stood out to you when you read or listened to the Qur'an today?`, v:`And We send down of the Qur'an that which is healing and mercy for the believers.`, r:`Surah Al-Isra 17:82`},
+    {n:13, w:2, t:`Learning Wudu (Ablution)`, p:`Describe how you felt physically and spiritually refreshed after making your ablution today.`, v:`Indeed, Allah loves those who are constantly repentant and loves those who purify themselves.`, r:`Surah Al-Baqarah 2:222`},
+    {n:14, w:2, t:`Practicing the Daily Prayer Steps`, p:`What part of the physical prayer movements (standing, bowing, prostrating) brings you the closest peace?`, v:`And bow down with those who bow down [in worship].`, r:`Surah Al-Baqarah 2:43`},
+    {n:15, w:3, t:`The Gift of Dua (Personal Supplication)`, p:`Write a heartfelt, raw letter/dua to Allah right now in your own words, asking Him for exactly what you need.`, v:`And your Lord says, ‘Call upon Me; I will respond to you.’`, r:`Surah Ghafir 40:60`},
+    {n:16, w:3, t:`Cultivating Dhikr (Remembrance)`, p:`Spend two minutes in complete silence repeating a word of remembrance. How does your heart feel now?`, v:`So remember Me; I will remember you.`, r:`Surah Al-Baqarah 2:152`},
+    {n:17, w:3, t:`Growth Takes Time & Progress Over Perfection`, p:`What is one small religious habit you can commit to doing every single day without fail?`, v:`So fear Allah as much as you are able...`, r:`Surah At-Taghabun 64:16`},
+    {n:18, w:3, t:`Perfecting Character & Kindness`, p:`How can you deliberately choose patience and kindness over anger in an interaction today?`, v:`And speak to people with good [words].`, r:`Surah Al-Baqarah 2:83`},
+    {n:19, w:3, t:`Inner and Outer Cleanliness`, p:`What is one simple way you can clean or organize your physical environment today to honor your faith?`, v:`And your clothing purify.`, r:`Surah Al-Muddaththir 74:4`},
+    {n:20, w:3, t:`Understanding Halal & Haram Basics`, p:`How do Islamic dietary and lifestyle guidelines serve to protect your overall health and well-being?`, v:`O mankind, eat from whatever is on earth [that is] lawful and good...`, r:`Surah Al-Baqarah 2:168`},
+    {n:21, w:3, t:`Embracing Modesty (Haya)`, p:`How does dressing or behaving with modesty give you a sense of personal liberation and respect?`, v:`O children of Adam, We have bestowed upon you clothing to conceal your private parts and as adornment.`, r:`Surah Al-A'raf 7:26`},
+    {n:22, w:4, t:`Replacing an Old Habit`, p:`What is one habit from your past that you are ready to substitute with a wholesome, rewarding Islamic habit?`, v:`Indeed, the righteous deeds do away with misdeeds.`, r:`Surah Hud 11:114`},
+    {n:23, w:4, t:`Why Do I Miss My Old Life?`, p:`What specific part of your past lifestyle do you miss most, and how can you build a healthy, halal alternative?`, v:`And what is the worldly life except the enjoyment of delusion.`, r:`Surah Ali 'Imran 3:185`},
+    {n:24, w:4, t:`Dealing with Social Pressure & Expectations`, p:`Whose opinions are you worrying too much about right now? How can you release that worry to Allah?`, v:`Is not Allah sufficient for His Servant?`, r:`Surah Az-Zumar 39:36`},
+    {n:25, w:4, t:`You Are Not Alone — Stepping into a Mosque`, p:`Describe your thoughts or feelings when entering or thinking about entering a mosque. What would make you feel safer?`, v:`The mosques of Allah are only to be maintained by those who believe in Allah and the Last Day...`, r:`Surah At-Tawbah 9:18`},
+    {n:26, w:4, t:`Seeking Islamic Classes & Right Knowledge`, p:`What is one specific Islamic topic you want to learn more about this week from a trusted source?`, v:`And say, ‘My Lord, increase me in knowledge.’`, r:`Surah Taha 20:114`},
+    {n:27, w:4, t:`Be Part of the Community`, p:`What is one question that you would love to share or explore in a warm, welcoming circle of sisters/brothers at an upcoming event?`, v:`So ask the people of the message if you do not know.`, r:`Surah An-Nahl 16:43`},
+    {n:28, w:4, t:`Building Muslim Friendships`, p:`Look around your life. Who is one person who inspires you to do good, and how can you connect with them?`, v:`And close friends, that Day, will be enemies to each other, except for the righteous.`, r:`Surah Az-Zukhruf 43:67`},
+    {n:29, w:5, t:`Spiritual Fluctuation is Real`, p:`What triggers you to feel down or low in this journey? Have you figured how to manage them?`, v:`Allah does not burden a soul beyond that it can bear.`, r:`Surah Al-Baqarah 2:286`},
+    {n:30, w:5, t:`Explaining Islam to Loved Ones`, p:`Draft a short, gentle script or phrase you can use to explain your new lifestyle choices to a friend or family member.`, v:`Invite to the way of your Lord with wisdom and good instruction...`, r:`Surah An-Nahl 16:125`},
+    {n:31, w:5, t:`Maintaining Good Character with Non-Muslim Family`, p:`What is a practical gesture of kindness you can extend to your parents or siblings this weekend?`, v:`And We have enjoined upon man [care] for his parents. His mother carried him, [increasing her] in weakness upon weakness...`, r:`Surah Luqman 31:14`},
+    {n:32, w:5, t:`Dealing with Slipping Up`, p:`If you had a spiritual setback recently, write down a reminder to yourself that Allah's forgiveness is instantly available.`, v:`Indeed, Allah loves those who are constantly repentant...`, r:`Surah Al-Baqarah 2:222`},
+    {n:33, w:5, t:`What If My Employer Opposes My Faith?`, p:`What does true security look like to me, and how can I gently whisper to my anxious heart that Allah's plans for my provision are safer than any career path?`, v:`And whoever fears Allah — He will make for him a way out and will provide for him from where he does not expect.`, r:`Surah At-Talaq 65:2-3`},
+    {n:34, w:5, t:`Staying Motivated Through Spiritual Lows`, p:`What simple, low-effort spiritual act can you rely on when you feel too exhausted for deeper study?`, v:`Allah intends for you ease and does not intend for you hardship.`, r:`Surah Al-Baqarah 2:185`},
+    {n:35, w:5, t:`Can I Celebrate Family Events?`, p:`How can you actively show up for your family's joy while gently keeping your personal boundaries?`, v:`O you who have believed, seek help through patience and prayer.`, r:`Surah Al-Baqarah 2:153`},
+    {n:36, w:5, t:`Lifelong Learning & Embracing the Journey`, p:`Reflect on how much more comfortable you feel today with basic terms compared to Day 1. Celebrate that growth.`, v:`And say, ‘My Lord, increase me in knowledge.’`, r:`Surah Taha 20:114`},
+    {n:37, w:5, t:`Recognizing How Far Allah Has Brought You`, p:`Look back at your life six months ago. What changes are you most deeply grateful to Allah for creating in you?`, v:`And He found you lost and guided [you].`, r:`Surah Ad-Duha 93:7`},
+    {n:38, w:5, t:`You Are an Outsider`, p:`How can I gently remind my soul that a lifetime of peace and beautiful eternity awaits me with Allah?`, v:`But the Hereafter is better and more enduring.`, r:`Surah Al-A'la 87:17`},
+    {n:39, w:5, t:`Looking Forward with Clear Intentions`, p:`What are your top three personal spiritual goals for the next phase of your journey?`, v:`Say, ‘Indeed, my prayer, my rites of sacrifice, my living and my dying are for Allah, Lord of the worlds.’`, r:`Surah Al-An'am 6:162`},
+    {n:40, w:5, t:`Firmly Grounded in Faith`, p:`Write a final, triumphant message to yourself celebrating this milestone. What is your heart asking Allah for most right now?`, v:`Allah keeps firm those who believe, with the firm word, in worldly life and in the Hereafter.`, r:`Surah Ibrahim 14:27`}
+  ];
+
+  const WEEK_WORDS = ['', 'One', 'Two', 'Three', 'Four', 'Five'];
+  const WEEK_THEMES = {
+    1: 'The First Steps of Rebirth',
+    2: 'Grounding Your Knowledge',
+    3: 'Nourishing the Intuitive Spirit',
+    4: 'Walking Through Reality',
+    5: 'Steadfastness & the Eternal Home'
+  };
+
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => Array.from(document.querySelectorAll(s));
+  const el = (tag, cls, text) => {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  };
+  const pad2 = (n) => String(n).padStart(2, '0');
+  const clampDay = (n) => Math.max(1, Math.min(40, Number(n) || 1));
+
+  const LS = {
+    profile: 'wwh.profile',
+    last: 'wwh.last',
+    day: (n) => 'wwh.day.' + n,
+    sketch: (n) => 'wwh.sketch.' + n
+  };
+
+  let canStore = true;
+  try {
+    const testKey = 'wwh.test';
+    localStorage.setItem(testKey, '1');
+    localStorage.removeItem(testKey);
+  } catch (e) {
+    canStore = false;
+  }
+
+  function getLS(key) {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  }
+  function setLS(key, value) {
+    try { localStorage.setItem(key, value); return true; }
+    catch (e) { return false; }
+  }
+  function removeLS(key) {
+    try { localStorage.removeItem(key); } catch (e) {}
+  }
+  function readJSON(key, fallback) {
+    const raw = getLS(key);
+    if (!raw) return fallback;
+    try { return JSON.parse(raw); } catch (e) { return fallback; }
+  }
+  function normalizeMeta(m, text) {
+    return {
+      text: typeof m?.text === 'string' ? m.text : (text || ''),
+      hasSketch: !!m?.hasSketch,
+      updatedAt: Number(m?.updatedAt) || 0
+    };
+  }
+
+  let profile = readJSON(LS.profile, null);
+  const metas = {};
+  DAYS.forEach((d) => {
+    metas[d.n] = normalizeMeta(readJSON(LS.day(d.n), null));
+  });
+  let activeDay = clampDay(parseInt(getLS(LS.last) || '1', 10));
+  let activeSketchData = null;
+  let sketchDirty = false;
+  let textTimer = null;
+  let sketchTimer = null;
+  let welcomeOpen = false;
+
+  const rail = $('#rail');
+  const scrim = $('#scrim');
+  const menuBtn = $('#menuBtn');
+  const railClose = $('#railClose');
+  const nav = $('#dayList');
+  const niche = $('#niche');
+  const page = $('#page');
+  const noteInput = $('#noteInput');
+  const paneWrite = $('#paneWrite');
+  const paneDraw = $('#paneDraw');
+  const tabWrite = $('#tabWrite');
+  const tabDraw = $('#tabDraw');
+  const drawTabDot = $('#drawTabDot');
+  const canvasWrap = $('#canvasWrap');
+  const undoBtn = $('#undoBtn');
+  const eraserBtn = $('#eraserBtn');
+  const clearBtn = $('#clearBtn');
+  const saveState = $('#saveState');
+  const saveTextEl = $('#saveText');
+  const welcome = $('#welcome');
+  const nameInput = $('#nameInput');
+  const toastEl = $('#toast');
+  const printSheet = $('#printSheet');
+
+  /* ---------- rail ---------- */
+  let builtWeek = 0;
+  DAYS.forEach((d) => {
+    if (d.w !== builtWeek) {
+      builtWeek = d.w;
+      const head = el('div', 'rail-week');
+      const num = el('span', 'rw-num', 'Week ' + WEEK_WORDS[d.w]);
+      const theme = el('span', 'rw-theme', WEEK_THEMES[d.w]);
+      theme.title = WEEK_THEMES[d.w];
+      head.append(num, theme);
+      nav.append(head);
+    }
+    const btn = el('button', 'day-item');
+    btn.type = 'button';
+    btn.dataset.day = String(d.n);
+    btn.title = 'Day ' + d.n + ': ' + d.t;
+    const num = el('span', 'd-num', pad2(d.n));
+    const title = el('span', 'd-title', d.t);
+    const dot = el('span', 'd-dot');
+    dot.setAttribute('aria-hidden', 'true');
+    btn.append(num, title, dot);
+    nav.append(btn);
+  });
+
+  nav.addEventListener('click', (e) => {
+    const btn = e.target.closest('.day-item');
+    if (!btn) return;
+    selectDay(Number(btn.dataset.day));
+  });
+
+  function openRail() {
+    rail.classList.add('open');
+    scrim.classList.add('open');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('lock');
+    try { railClose.focus({ preventScroll: true }); } catch (e) {}
+  }
+  function closeRail() {
+    if (!rail.classList.contains('open')) return;
+    rail.classList.remove('open');
+    scrim.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('lock');
+    try { menuBtn.focus({ preventScroll: true }); } catch (e) {}
+  }
+  menuBtn.addEventListener('click', openRail);
+  railClose.addEventListener('click', closeRail);
+  scrim.addEventListener('click', closeRail);
+
+  /* ---------- storage helpers ---------- */
+  function persistMeta(n) {
+    const m = metas[n];
+    m.updatedAt = Date.now();
+    return setLS(LS.day(n), JSON.stringify(m));
+  }
+
+  function isLit(n) {
+    const m = metas[n];
+    if (!m) return false;
+    if (n === activeDay) {
+      return noteInput.value.trim().length > 0 || m.hasSketch || (sketchDirty && !pad.isEmpty());
+    }
+    return m.text.trim().length > 0 || m.hasSketch;
+  }
+
+  function setSaveState(kind) {
+    saveState.dataset.state = kind;
+    saveTextEl.textContent = kind === 'saving' ? 'Saving…' : kind === 'saved' ? 'Saved on this device' : 'Could not save';
+  }
+
+  function updateRail() {
+    $$('.day-item').forEach((b) => {
+      const n = Number(b.dataset.day);
+      b.setAttribute('aria-current', n === activeDay ? 'true' : 'false');
+      b.querySelector('.d-dot').classList.toggle('on', isLit(n));
+    });
+  }
+
+  function updateProgress() {
+    let lit = 0;
+    DAYS.forEach((d) => { if (isLit(d.n)) lit += 1; });
+    $('#litCount').textContent = lit + ' of 40 days lit';
+    $('#litPct').textContent = Math.round((lit / 40) * 100) + '%';
+    $('#barFill').style.width = (lit / 40) * 100 + '%';
+    updateRail();
+  }
+
+  function updateLit() {
+    niche.classList.toggle('lit', isLit(activeDay));
+    updateTabDot();
+  }
+
+  function updateTabDot() {
+    const has = metas[activeDay].hasSketch || (sketchDirty && !pad.isEmpty());
+    drawTabDot.hidden = !has;
+  }
+
+  function renderGreeting() {
+    const g = $('#greeting');
+    g.textContent = profile && profile.name ? 'Assalamu’alaikum, ' + profile.name + '.' : 'Assalamu’alaikum.';
+  }
+
+  /* ---------- notebook state ---------- */
+  function renderDay() {
+    const d = DAYS[activeDay - 1];
+    $('#eyebrow').textContent = 'Week ' + WEEK_WORDS[d.w] + ' · Day ' + pad2(d.n);
+    $('#dayTitle').textContent = d.t;
+    $('#prompt').textContent = d.p;
+    $('#verse').textContent = '“' + d.v + '”';
+    $('#verseRef').textContent = d.r;
+    $('#dayLabel').textContent = 'Day ' + pad2(d.n) + ' / 40';
+    document.title = 'Day ' + pad2(d.n) + ' · ' + d.t + ' — Welcome Home Journal';
+    $('#prevBtn').disabled = activeDay === 1;
+    $('#nextBtn').disabled = activeDay === 40;
+    updateLit();
+
+    page.classList.remove('swap');
+    void page.offsetWidth;
+    page.classList.add('swap');
+
+    const cur = nav.querySelector('.day-item[data-day="' + activeDay + '"]');
+    if (cur) {
+      try { cur.scrollIntoView({ block: 'nearest' }); } catch (e) {}
+    }
+  }
+
+  function autosize() {
+    noteInput.style.height = 'auto';
+    const min = window.innerWidth <= 700 ? 300 : 378;
+    noteInput.style.height = Math.max(min, noteInput.scrollHeight + 2) + 'px';
+  }
+
+  function loadActive(scroll) {
+    const m = metas[activeDay];
+    noteInput.value = m.text;
+    autosize();
+    activeSketchData = m.hasSketch ? getLS(LS.sketch(activeDay)) : null;
+    if (m.hasSketch && !activeSketchData) {
+      m.hasSketch = false;
+      persistMeta(activeDay);
+    }
+    sketchDirty = false;
+    pad.loadedDay = null;
+    if (!paneDraw.hidden) syncPad();
+    renderDay();
+    updateProgress();
+    setSaveState('saved');
+    if (scroll) window.scrollTo(0, 0);
+    resetClear();
+  }
+
+  function selectDay(n, opts) {
+    n = clampDay(n);
+    if (n === activeDay) { closeRail(); return; }
+    flush();
+    activeDay = n;
+    setLS(LS.last, String(n));
+    loadActive(opts && opts.scroll);
+    closeRail();
+  }
+
+  function saveText() {
+    const m = metas[activeDay];
+    m.text = noteInput.value;
+    const ok = persistMeta(activeDay);
+    setSaveState(ok ? 'saved' : 'error');
+    if (!ok) toast('This note could not be saved. Use “Back up” to keep a copy.', 6500);
+    updateLit();
+    updateProgress();
+  }
+
+  function saveSketch() {
+    if (!sketchDirty) return;
+    const m = metas[activeDay];
+    const isEmpty = pad.isEmpty();
+    const data = isEmpty ? null : pad.snapshot();
+    let ok = true;
+    if (data) ok = setLS(LS.sketch(activeDay), data);
+    else removeLS(LS.sketch(activeDay));
+    m.hasSketch = !!data;
+    activeSketchData = data;
+    sketchDirty = false;
+    ok = persistMeta(activeDay) && ok;
+    setSaveState(ok ? 'saved' : 'error');
+    if (!ok) toast('This drawing could not be saved. Use “Back up” to keep a copy.', 6500);
+    updateLit();
+    updateProgress();
+  }
+
+  function flush() {
+    clearTimeout(textTimer);
+    if (sketchDirty) saveSketch();
+    if (noteInput.value !== metas[activeDay].text) saveText();
+  }
+
+  noteInput.addEventListener('input', () => {
+    autosize();
+    setSaveState('saving');
+    clearTimeout(textTimer);
+    textTimer = setTimeout(saveText, 550);
+    updateLit();
+    updateProgress();
+  });
+  noteInput.addEventListener('blur', () => {
+    clearTimeout(textTimer);
+    if (noteInput.value !== metas[activeDay].text) saveText();
+  });
+
+  /* ---------- tabs ---------- */
+  function setTab(tab, focus) {
+    const isWrite = tab === 'write';
+    tabWrite.setAttribute('aria-selected', String(isWrite));
+    tabDraw.setAttribute('aria-selected', String(!isWrite));
+    paneWrite.hidden = !isWrite;
+    paneDraw.hidden = isWrite;
+    if (!isWrite) {
+      syncPad();
+    } else if (sketchDirty) {
+      clearTimeout(sketchTimer);
+      saveSketch();
+    }
+    if (focus) (isWrite ? tabWrite : tabDraw).focus();
+    if (isWrite) requestAnimationFrame(autosize);
+  }
+  tabWrite.addEventListener('click', () => setTab('write'));
+  tabDraw.addEventListener('click', () => setTab('draw'));
+  $('.tabs').addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      setTab(e.key === 'ArrowRight' ? 'draw' : 'write', true);
+    }
+  });
+
+  /* ---------- drawing ---------- */
+  class Sketchpad {
+    constructor(canvas) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
+      this.color = '#23302A';
+      this.size = 4;
+      this.eraser = false;
+      this.drawing = false;
+      this.hasInk = false;
+      this.undoStack = [];
+      this.last = null;
+      this.loadedDay = null;
+      this.onChange = null;
+      this.onDirty = null;
+      this.dpr = 1;
+      this.bind();
+      if ('ResizeObserver' in window) {
+        this.ro = new ResizeObserver(() => this.fit());
+        this.ro.observe(canvas.parentElement);
+      } else {
+        window.addEventListener('resize', () => this.fit());
+      }
+    }
+    setColor(c) { this.color = c; }
+    setSize(s) { this.size = s; }
+    point(e) {
+      const r = this.canvas.getBoundingClientRect();
+      return { x: e.clientX - r.left, y: e.clientY - r.top, p: e.pressure || 0 };
+    }
+    widthFor(e, p) {
+      if (this.eraser) return 22;
+      if (e.pointerType === 'pen' && p > 0) return Math.max(1, this.size * (0.55 + p * 0.9));
+      return this.size;
+    }
+    applyStyle() {
+      const ctx = this.ctx;
+      ctx.globalCompositeOperation = this.eraser ? 'destination-out' : 'source-over';
+      ctx.strokeStyle = this.color;
+      ctx.lineWidth = this.eraser ? 22 : this.size;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+    }
+    fit() {
+      const wrap = this.canvas.parentElement;
+      if (!wrap) return;
+      const w = wrap.clientWidth;
+      const h = wrap.clientHeight;
+      if (w < 20 || h < 20) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const W = Math.round(w * dpr);
+      const H = Math.round(h * dpr);
+      if (this.canvas.width === W && this.canvas.height === H) return;
+      const prev = this.hasInk ? this.canvas.toDataURL('image/png') : null;
+      this.canvas.width = W;
+      this.canvas.height = H;
+      this.dpr = dpr;
+      const ctx = this.ctx;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      if (prev) {
+        const img = new Image();
+        img.onload = () => {
+          ctx.save();
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          ctx.clearRect(0, 0, W, H);
+          ctx.drawImage(img, 0, 0, W, H);
+          ctx.restore();
+        };
+        img.src = prev;
+      }
+    }
+    load(src) {
+      this.undoStack = [];
+      this.hasInk = false;
+      const ctx = this.ctx;
+      const W = this.canvas.width;
+      const H = this.canvas.height;
+      ctx.save();
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      ctx.restore();
+      this.emitChange();
+      if (!src) return;
+      const img = new Image();
+      img.onload = () => {
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, W, H);
+        ctx.drawImage(img, 0, 0, W, H);
+        ctx.restore();
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        this.hasInk = true;
+        this.emitChange();
+      };
+      img.src = src;
+    }
+    clear(resetUndo) {
+      const ctx = this.ctx;
+      const W = this.canvas.width;
+      const H = this.canvas.height;
+      ctx.save();
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      ctx.restore();
+      this.hasInk = false;
+      if (resetUndo !== false) this.undoStack = [];
+      this.emitChange();
+    }
+    isEmpty() { return !this.hasInk; }
+    pushUndo() {
+      try {
+        if (this.undoStack.length >= 12) this.undoStack.shift();
+        this.undoStack.push(this.canvas.toDataURL('image/png'));
+      } catch (e) {}
+    }
+    undo() {
+      if (!this.undoStack.length) return;
+      const src = this.undoStack.pop();
+      const ctx = this.ctx;
+      const W = this.canvas.width;
+      const H = this.canvas.height;
+      const img = new Image();
+      img.onload = () => {
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, W, H);
+        ctx.drawImage(img, 0, 0, W, H);
+        ctx.restore();
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        this.hasInk = true;
+        this.emitChange();
+        if (this.onDirty) this.onDirty();
+      };
+      img.src = src;
+    }
+    snapshot() {
+      const src = this.canvas;
+      const scale = Math.min(1, 1280 / Math.max(1, src.width));
+      const out = document.createElement('canvas');
+      out.width = Math.max(1, Math.round(src.width * scale));
+      out.height = Math.max(1, Math.round(src.height * scale));
+      const o = out.getContext('2d');
+      o.fillStyle = '#FCF8EE';
+      o.fillRect(0, 0, out.width, out.height);
+      o.drawImage(src, 0, 0, out.width, out.height);
+      return out.toDataURL('image/jpeg', 0.72);
+    }
+    emitChange() { if (this.onChange) this.onChange(); }
+    emitDirty() { if (this.onDirty) this.onDirty(); }
+    bind() {
+      const c = this.canvas;
+      c.addEventListener('pointerdown', (e) => this.onDown(e));
+      c.addEventListener('pointermove', (e) => this.onMove(e));
+      const end = (e) => this.onUp(e);
+      c.addEventListener('pointerup', end);
+      c.addEventListener('pointercancel', end);
+      c.addEventListener('lostpointercapture', end);
+    }
+    onDown(e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      e.preventDefault();
+      if (!this.canvas.width || !this.canvas.height) this.fit();
+      try { this.canvas.setPointerCapture(e.pointerId); } catch (err) {}
+      this.pushUndo();
+      this.drawing = true;
+      this.last = this.point(e);
+      const ctx = this.ctx;
+      this.applyStyle();
+      ctx.beginPath();
+      ctx.moveTo(this.last.x, this.last.y);
+      ctx.lineTo(this.last.x + 0.01, this.last.y + 0.01);
+      ctx.stroke();
+      this.hasInk = true;
+      this.emitChange();
+    }
+    onMove(e) {
+      if (!this.drawing) return;
+      e.preventDefault();
+      const ctx = this.ctx;
+      const coalesced = typeof e.getCoalescedEvents === 'function' ? e.getCoalescedEvents() : [];
+      const events = coalesced && coalesced.length ? coalesced : [e];
+      this.applyStyle();
+      for (const ev of events) {
+        const p = this.point(ev);
+        const midX = (this.last.x + p.x) / 2;
+        const midY = (this.last.y + p.y) / 2;
+        ctx.lineWidth = this.widthFor(ev, p.p);
+        ctx.quadraticCurveTo(this.last.x, this.last.y, midX, midY);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(midX, midY);
+        this.last = p;
+      }
+      this.hasInk = true;
+      this.emitChange();
+    }
+    onUp() {
+      if (!this.drawing) return;
+      this.drawing = false;
+      const ctx = this.ctx;
+      if (this.last) {
+        ctx.lineTo(this.last.x, this.last.y);
+        ctx.stroke();
+        ctx.beginPath();
+      }
+      ctx.globalCompositeOperation = 'source-over';
+      this.emitChange();
+      this.emitDirty();
+    }
+  }
+
+  const pad = new Sketchpad($('#sketch'));
+
+  function updateDrawUI() {
+    canvasWrap.classList.toggle('has-ink', !pad.isEmpty());
+    undoBtn.disabled = pad.undoStack.length === 0;
+    updateTabDot();
+  }
+  pad.onChange = updateDrawUI;
+  pad.onDirty = function () {
+    sketchDirty = true;
+    setSaveState('saving');
+    clearTimeout(sketchTimer);
+    sketchTimer = setTimeout(saveSketch, 650);
+    updateLit();
+    updateTabDot();
+  };
+
+  function syncPad() {
+    requestAnimationFrame(() => {
+      if (paneDraw.hidden) return;
+      pad.fit();
+      if (pad.loadedDay !== activeDay) {
+        pad.loadedDay = activeDay;
+        pad.clear(true);
+        if (activeSketchData) pad.load(activeSketchData);
+      }
+    });
+  }
+
+  /* ---------- drawing tools ---------- */
+  function setEraser(on) {
+    pad.eraser = on;
+    eraserBtn.classList.toggle('is-active', on);
+    eraserBtn.setAttribute('aria-pressed', String(on));
+  }
+  $$('.swatch').forEach((b) => {
+    b.addEventListener('click', () => {
+      pad.setColor(b.dataset.color);
+      setEraser(false);
+      $$('.swatch').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    });
+  });
+  $$('.width').forEach((b) => {
+    b.addEventListener('click', () => {
+      pad.setSize(Number(b.dataset.width));
+      $$('.width').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    });
+  });
+  eraserBtn.addEventListener('click', () => setEraser(!pad.eraser));
+  undoBtn.addEventListener('click', () => pad.undo());
+
+  let clearArmed = false;
+  let clearTimer = null;
+  function resetClear() {
+    clearArmed = false;
+    clearBtn.textContent = 'Clear';
+    clearBtn.classList.remove('armed');
+    clearTimeout(clearTimer);
+  }
+  clearBtn.addEventListener('click', () => {
+    if (pad.isEmpty()) return;
+    if (!clearArmed) {
+      clearArmed = true;
+      clearBtn.textContent = 'Tap again to clear';
+      clearBtn.classList.add('armed');
+      clearTimeout(clearTimer);
+      clearTimer = setTimeout(resetClear, 2800);
+      return;
+    }
+    resetClear();
+    pad.pushUndo();
+    pad.clear(false);
+    sketchDirty = true;
+    metas[activeDay].hasSketch = false;
+    activeSketchData = null;
+    removeLS(LS.sketch(activeDay));
+    persistMeta(activeDay);
+    setSaveState('saved');
+    updateLit();
+    updateProgress();
+    updateTabDot();
+    toast('Drawing cleared. The undo arrow brings it back.');
+  });
+
+  /* ---------- pager, keyboard, date ---------- */
+  $('#prevBtn').addEventListener('click', () => selectDay(activeDay - 1, { scroll: true }));
+  $('#nextBtn').addEventListener('click', () => selectDay(activeDay + 1, { scroll: true }));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (welcomeOpen) { e.preventDefault(); skipWelcome(); return; }
+      if (rail.classList.contains('open')) { e.preventDefault(); closeRail(); return; }
+    }
+    if (welcomeOpen) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const t = e.target;
+    if (t && t.closest && t.closest('textarea, input, [role="tablist"], .draw-tools')) return;
+    if (e.key === 'ArrowLeft') { e.preventDefault(); selectDay(activeDay - 1, { scroll: true }); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); selectDay(activeDay + 1, { scroll: true }); }
+  });
+
+  $('#todayLabel').textContent = new Intl.DateTimeFormat(undefined, {
+    weekday: 'long', day: 'numeric', month: 'long'
+  }).format(new Date());
+
+  /* ---------- toast ---------- */
+  let toastTimer = null;
+  function toast(msg, ms) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), ms || 4200);
+  }
+
+  /* ---------- print ---------- */
+  async function buildPrintSheet() {
+    const d = DAYS[activeDay - 1];
+    const m = metas[activeDay];
+    printSheet.textContent = '';
+    printSheet.append(el('p', 'print-meta', 'Welcome Home · Day ' + pad2(activeDay) + ' · Week ' + WEEK_WORDS[d.w]));
+    printSheet.append(el('h1', 'print-day', d.t));
+    printSheet.append(el('p', 'print-prompt-label', 'Reflection'));
+    printSheet.append(el('p', 'print-prompt', d.p));
+    printSheet.append(el('blockquote', 'print-verse', '“' + d.v + '”'));
+    printSheet.append(el('p', 'print-ref', d.r));
+    if (m.text.trim()) {
+      printSheet.append(el('h2', 'print-note-h', 'My note'));
+      printSheet.append(el('div', 'print-note', m.text));
+    }
+    const src = m.hasSketch ? getLS(LS.sketch(activeDay)) : null;
+    if (src) {
+      const img = el('img', 'print-sketch');
+      img.src = src;
+      img.alt = 'Hand-drawn note for day ' + activeDay;
+      printSheet.append(img);
+      try { await img.decode(); } catch (e) {}
+    }
+    if (!m.text.trim() && !src) {
+      printSheet.append(el('p', 'print-empty', 'No note was written for this day.'));
+    }
+    printSheet.append(el('p', 'print-foot', new Intl.DateTimeFormat(undefined, { dateStyle: 'long' }).format(new Date())));
+  }
+  async function printDay() {
+    flush();
+    await buildPrintSheet();
+    window.print();
+  }
+  $('#printBtn').addEventListener('click', printDay);
+  window.addEventListener('beforeprint', () => { buildPrintSheet(); });
+
+  /* ---------- backup & restore ---------- */
+  $('#backupBtn').addEventListener('click', () => {
+    flush();
+    const data = {
+      app: 'welcome-home-journal',
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      profile: { name: profile && profile.name ? profile.name : '' },
+      days: {}
+    };
+    DAYS.forEach((d) => {
+      const m = metas[d.n];
+      if (!m.text.trim() && !m.hasSketch) return;
+      data.days[d.n] = {
+        text: m.text,
+        updatedAt: m.updatedAt,
+        sketch: m.hasSketch ? getLS(LS.sketch(d.n)) : null
+      };
+    });
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'welcome-home-journal-' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 3000);
+    toast('Backup downloaded. Keep it somewhere safe.');
+  });
+
+  const restoreInput = $('#restoreInput');
+  $('#restoreBtn').addEventListener('click', () => restoreInput.click());
+  restoreInput.addEventListener('change', async () => {
+    const file = restoreInput.files && restoreInput.files[0];
+    if (!file) return;
+    try {
+      const data = JSON.parse(await file.text());
+      if (!data || data.app !== 'welcome-home-journal' || !data.days || typeof data.days !== 'object') {
+        throw new Error('Not a journal backup');
+      }
+      const keys = Object.keys(data.days).filter((k) => Number(k) >= 1 && Number(k) <= 40);
+      if (!keys.length) { toast('That backup has no notes in it.'); return; }
+      const ok = window.confirm('Restore ' + keys.length + ' day' + (keys.length > 1 ? 's' : '') + ' from this backup?\n\nThis replaces the notes for those days on this device.');
+      if (!ok) return;
+      flush();
+      keys.forEach((k) => {
+        const n = Number(k);
+        const v = data.days[k] || {};
+        const text = typeof v.text === 'string' ? v.text : '';
+        const hasSketch = typeof v.sketch === 'string' && v.sketch.indexOf('data:image/') === 0;
+        metas[n] = { text: text, hasSketch: hasSketch, updatedAt: Number(v.updatedAt) || Date.now() };
+        setLS(LS.day(n), JSON.stringify(metas[n]));
+        if (hasSketch) setLS(LS.sketch(n), v.sketch);
+        else removeLS(LS.sketch(n));
+      });
+      if (data.profile && typeof data.profile.name === 'string' && data.profile.name.trim()) {
+        profile = { name: data.profile.name.trim().slice(0, 40), seen: true };
+        setLS(LS.profile, JSON.stringify(profile));
+        renderGreeting();
+      }
+      const m = metas[activeDay];
+      noteInput.value = m.text;
+      autosize();
+      activeSketchData = m.hasSketch ? getLS(LS.sketch(activeDay)) : null;
+      sketchDirty = false;
+      pad.loadedDay = null;
+      if (!paneDraw.hidden) syncPad();
+      renderDay();
+      updateProgress();
+      toast('Backup restored. Your journal is up to date.');
+    } catch (e) {
+      toast('That file doesn’t look like a journal backup.');
+    }
+    restoreInput.value = '';
+  });
+
+  /* ---------- welcome ---------- */
+  function openWelcome() {
+    welcomeOpen = true;
+    welcome.hidden = false;
+    document.body.classList.add('lock');
+    nameInput.value = profile && profile.name ? profile.name : '';
+    renderGreeting();
+    setTimeout(() => { try { nameInput.focus({ preventScroll: true }); } catch (e) {} }, 260);
+  }
+  function closeWelcome() {
+    welcomeOpen = false;
+    welcome.hidden = true;
+    document.body.classList.remove('lock');
+  }
+  function saveProfileFromInput() {
+    profile = { name: nameInput.value.trim().slice(0, 40), seen: true };
+    setLS(LS.profile, JSON.stringify(profile));
+    renderGreeting();
+    closeWelcome();
+  }
+  function skipWelcome() {
+    if (!profile) {
+      profile = { name: '', seen: true };
+      setLS(LS.profile, JSON.stringify(profile));
+    }
+    renderGreeting();
+    closeWelcome();
+  }
+  $('#welcomeForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    saveProfileFromInput();
+  });
+  $('#skipWelcome').addEventListener('click', skipWelcome);
+
+  /* ---------- boot ---------- */
+  renderGreeting();
+  loadActive(false);
+
+  if (!profile) {
+    openWelcome();
+  } else {
+    setTimeout(() => {
+      if (window.innerWidth > 700) {
+        try { noteInput.focus({ preventScroll: true }); } catch (e) {}
+      }
+    }, 350);
+  }
+
+  if (!canStore) {
+    setTimeout(() => {
+      toast('This browser is blocking saved notes. Use “Back up” before you close this page.', 9000);
+    }, 1800);
+  }
+
+  let resizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      autosize();
+      if (!paneDraw.hidden) pad.fit();
+    }, 160);
+  });
+
+  window.addEventListener('pagehide', flush);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') flush();
+  });
+})();
+</script>
+</body>
+</html>
