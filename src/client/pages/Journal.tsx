@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Link } from 'react-router';
+import logo from '../assets/hcf-logo.png';
 import type { Entry, EntryMeta, PublicUser } from '../../shared/schemas';
 import { Lamp } from '../components/Lamp';
 import { Icon } from '../components/Icon';
@@ -528,11 +529,12 @@ export function Journal() {
             <Icon name="close" />
           </button>
           <div className="brand">
+            <Link to="/#about" aria-label="Hidayah Centre Foundation and About Us"><img src={logo} alt="Hidayah Centre Foundation" style={{ width: 100, maxHeight: 64, objectFit: "contain", marginBottom: 10 }} /></Link>
             <div className="bismillah" lang="ar" dir="rtl">
               بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
             </div>
             <div className="wordmark">Welcome Home</div>
-            <div className="tagline">A private 40-day journal</div>
+            <div className="tagline">A private 40-day journal · 6 weeks</div>
             <p className="greeting">{greeting}</p>
           </div>
 
@@ -569,6 +571,8 @@ export function Journal() {
               />
             </div>
             <div className="rail-actions">
+              <Link to="/#resources" className="rail-link"><span>Prayer guides</span></Link>
+              <Link to="/#about" className="rail-link"><span>About us</span></Link>
               {user.role === 'admin' && (
                 <Link to="/admin" className="rail-link">
                   <Icon name="shield" />
