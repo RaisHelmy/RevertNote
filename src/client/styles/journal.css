@@ -96,9 +96,11 @@ body.lock{overflow:hidden}
 .d-dot{flex:none;width:5px;height:5px;border-radius:50%;border:1px solid rgba(246,239,223,.22);transition:background .3s,border-color .3s,box-shadow .3s}
 .d-dot.on{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 3px rgba(194,161,92,.15)}
 .rail-foot{border-top:1px solid rgba(194,161,92,.16);padding-top:12px;margin-top:4px}
-.rail-actions{display:flex;gap:2px}
+.rail-actions{display:flex;flex-wrap:wrap;gap:2px}
 .rail-actions button{display:inline-flex;align-items:center;gap:6px;padding:6px 8px;border-radius:6px;font-size:11px;color:rgba(246,239,223,.6);transition:background .18s,color .18s}
 .rail-actions button:hover{background:rgba(255,255,255,.05);color:#F7F0DF}
+.rail-actions + .rail-actions > button:last-child{flex-basis:100%;justify-content:flex-start;margin-top:6px;padding:10px 8px 6px;border-top:1px solid rgba(194,161,92,.12);border-radius:0}
+.rail-actions + .rail-actions > button:last-child span{max-width:none}
 .rail-actions svg{width:13px;height:13px}
 .privacy{display:flex;align-items:center;gap:6px;margin:7px 8px 0;font-size:10px;color:rgba(147,167,154,.7)}
 .privacy svg{width:11px;height:11px;flex:none}
