@@ -556,7 +556,7 @@ export function Landing() {
               </h2>
               <p className="lede">
                 Welcome Home — A 40-Day Companion for New Muslims was written and published by Hidayah Centre
-                Foundation. Every prompt and verse in this journal comes from that book, credited and used with care.
+                Foundation. The journal follows its daily reflections, with special acknowledgement to Faizah Ayala.
               </p>
               <p className="lede">The journal does not replace a teacher, a mosque, or a circle of friends. Keep all three close.</p>
             </div>
