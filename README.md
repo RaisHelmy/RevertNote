@@ -1,4 +1,4 @@
-# Welcome Home — 40-Day Journal (SaaS)
+# Welcome Home — 40-Day / 6-Week Journal (SaaS)
 
 A private 40-day journal for new Muslims, with accounts and an admin panel. It started as the single-file
 `welcome-home-journal.html` and is now a React app with a Cloudflare Worker API and a D1 database.
@@ -12,7 +12,7 @@ Worker) · Cloudflare D1.
   "Sign in" link; signed-in users see "Open my journal".
 - **Sign up** with username, email, phone (country picker, Malaysia by default) and password. There is no email
   or phone verification. **Sign in** with username, email *or* phone.
-- **Journal:** 40 days of prompts and verses, a written note and a drawing per day, autosave, progress
+- **Journal:** 40 days of prompts and verses across 6 weeks, a written note and a drawing per day, autosave, progress
   ("days lit"), print a day, back up / restore (same JSON format as the original offline journal).
 - **Migrating from the offline journal:** if the browser still holds notes from the old HTML version
   (`localStorage` `wwh.*`), the user is offered a one-click import into their account.
