@@ -1,7 +1,7 @@
 export interface Day {
   /** Day number, 1–40. */
   n: number;
-  /** Week number, 1–5. */
+  /** Week number, 1–6. */
   w: number;
   /** Title. */
   t: string;
@@ -49,21 +49,22 @@ export const DAYS: Day[] = [
     {n:33, w:5, t:`What If My Employer Opposes My Faith?`, p:`What does true security look like to me, and how can I gently whisper to my anxious heart that Allah's plans for my provision are safer than any career path?`, v:`And whoever fears Allah — He will make for him a way out and will provide for him from where he does not expect.`, r:`Surah At-Talaq 65:2-3`},
     {n:34, w:5, t:`Staying Motivated Through Spiritual Lows`, p:`What simple, low-effort spiritual act can you rely on when you feel too exhausted for deeper study?`, v:`Allah intends for you ease and does not intend for you hardship.`, r:`Surah Al-Baqarah 2:185`},
     {n:35, w:5, t:`Can I Celebrate Family Events?`, p:`How can you actively show up for your family's joy while gently keeping your personal boundaries?`, v:`O you who have believed, seek help through patience and prayer.`, r:`Surah Al-Baqarah 2:153`},
-    {n:36, w:5, t:`Lifelong Learning & Embracing the Journey`, p:`Reflect on how much more comfortable you feel today with basic terms compared to Day 1. Celebrate that growth.`, v:`And say, ‘My Lord, increase me in knowledge.’`, r:`Surah Taha 20:114`},
-    {n:37, w:5, t:`Recognizing How Far Allah Has Brought You`, p:`Look back at your life six months ago. What changes are you most deeply grateful to Allah for creating in you?`, v:`And He found you lost and guided [you].`, r:`Surah Ad-Duha 93:7`},
-    {n:38, w:5, t:`You Are an Outsider`, p:`How can I gently remind my soul that a lifetime of peace and beautiful eternity awaits me with Allah?`, v:`But the Hereafter is better and more enduring.`, r:`Surah Al-A'la 87:17`},
-    {n:39, w:5, t:`Looking Forward with Clear Intentions`, p:`What are your top three personal spiritual goals for the next phase of your journey?`, v:`Say, ‘Indeed, my prayer, my rites of sacrifice, my living and my dying are for Allah, Lord of the worlds.’`, r:`Surah Al-An'am 6:162`},
-    {n:40, w:5, t:`Firmly Grounded in Faith`, p:`Write a final, triumphant message to yourself celebrating this milestone. What is your heart asking Allah for most right now?`, v:`Allah keeps firm those who believe, with the firm word, in worldly life and in the Hereafter.`, r:`Surah Ibrahim 14:27`}
+    {n:36, w:6, t:`Lifelong Learning & Embracing the Journey`, p:`Reflect on how much more comfortable you feel today with basic terms compared to Day 1. Celebrate that growth.`, v:`And say, ‘My Lord, increase me in knowledge.’`, r:`Surah Taha 20:114`},
+    {n:37, w:6, t:`Recognizing How Far Allah Has Brought You`, p:`Look back at your life six months ago. What changes are you most deeply grateful to Allah for creating in you?`, v:`And He found you lost and guided [you].`, r:`Surah Ad-Duha 93:7`},
+    {n:38, w:6, t:`You Are an Outsider`, p:`How can I gently remind my soul that a lifetime of peace and beautiful eternity awaits me with Allah?`, v:`But the Hereafter is better and more enduring.`, r:`Surah Al-A'la 87:17`},
+    {n:39, w:6, t:`Looking Forward with Clear Intentions`, p:`What are your top three personal spiritual goals for the next phase of your journey?`, v:`Say, ‘Indeed, my prayer, my rites of sacrifice, my living and my dying are for Allah, Lord of the worlds.’`, r:`Surah Al-An'am 6:162`},
+    {n:40, w:6, t:`Firmly Grounded in Faith`, p:`Write a final, triumphant message to yourself celebrating this milestone. What is your heart asking Allah for most right now?`, v:`Allah keeps firm those who believe, with the firm word, in worldly life and in the Hereafter.`, r:`Surah Ibrahim 14:27`}
 ];
 
-export const WEEK_WORDS = ['', 'One', 'Two', 'Three', 'Four', 'Five'];
+export const WEEK_WORDS = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six'];
 
 export const WEEK_THEMES: Record<number, string> = {
   1: 'The First Steps of Rebirth',
   2: 'Grounding Your Knowledge',
   3: 'Nourishing the Intuitive Spirit',
   4: 'Walking Through Reality',
-  5: 'Steadfastness & the Eternal Home',
+  5: 'Staying Steady Through Challenges',
+  6: 'Steadfastness & the Eternal Home',
 };
 
 export const pad2 = (n: number) => String(n).padStart(2, '0');
