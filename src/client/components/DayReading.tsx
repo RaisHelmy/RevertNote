@@ -1,8 +1,58 @@
+import { Fragment } from 'react';
 import { Link } from 'react-router';
 import { DAY_BOOK, FATIHAH, SHAHADA, type DayExtra } from '../content/book';
 import '../styles/reading.css';
 
-function Extra({ x }: { x: DayExtra }) {
+const guideHref = (query: string, day: number) => `/guides?${query}&from=${day}`;
+
+/** Renders a paragraph, turning `[[label|g=salah&flow=two]]` into guide links. */
+function Para({ text, day }: { text: string; day: number }) {
+  const parts = text.split(/\[\[([^|\]]+)\|([^\]]+)\]\]/);
+  return (
+    <p>
+      {parts.map((s, i) =>
+        i % 3 === 1 ? (
+          <Link key={i} className="rd-inline" to={guideHref(parts[i + 1]!, day)}>
+            {s}
+          </Link>
+        ) : i % 3 === 2 ? null : (
+          <Fragment key={i}>{s}</Fragment>
+        ),
+      )}
+    </p>
+  );
+}
+
+const PRAY_LINKS = [
+  { q: 'g=wudu', label: 'Wudu', sub: 'Start here' },
+  { q: 'g=salah&flow=two', label: 'Fajr', sub: '2 rak’ah' },
+  { q: 'g=salah&flow=three', label: 'Maghrib', sub: '3 rak’ah' },
+  { q: 'g=salah&flow=four', label: 'Dhuhr · Asr · Isha', sub: '4 rak’ah' },
+];
+
+function PrayCard({ day }: { day: number }) {
+  return (
+    <aside className="rd-pray" aria-labelledby={`pray-${day}`}>
+      <p className="rd-pray-title" id={`pray-${day}`}>
+        Ready to pray?
+      </p>
+      <p className="rd-pray-sub">Make wudu first, then follow the steps for the prayer you are about to pray.</p>
+      <div className="rd-pray-links">
+        {PRAY_LINKS.map((l) => (
+          <Link key={l.q} to={guideHref(l.q, day)}>
+            <strong>{l.label}</strong>
+            <span>{l.sub}</span>
+          </Link>
+        ))}
+      </div>
+      <p className="rd-pray-ghusl">
+        Need a full ritual bath first? <Link to={guideHref('g=ghusl', day)}>See the Ghusl guide →</Link>
+      </p>
+    </aside>
+  );
+}
+
+function Extra({ x, day }: { x: DayExtra; day: number }) {
   switch (x.kind) {
     case 'shahada':
       return (
@@ -55,10 +105,12 @@ function Extra({ x }: { x: DayExtra }) {
       );
     case 'guide':
       return (
-        <p className="rd-guide">
-          <Link to={`/guides?g=${x.id}`}>{x.label} →</Link>
+        <p className={x.primary ? 'rd-guide rd-guide-primary' : 'rd-guide'}>
+          <Link to={guideHref(`g=${x.id}${x.flow ? `&flow=${x.flow}` : ''}`, day)}>{x.label} →</Link>
         </p>
       );
+    case 'pray':
+      return <PrayCard day={day} />;
   }
 }
 
@@ -69,9 +121,9 @@ export function DayReading({ day }: { day: number }) {
   return (
     <section className="reading" aria-label="Today’s reading">
       {b.body.map((p) => (
-        <p key={p}>{p}</p>
+        <Para key={p} text={p} day={day} />
       ))}
-      {b.extras?.map((x, i) => <Extra key={i} x={x} />)}
+      {b.extras?.map((x, i) => <Extra key={i} x={x} day={day} />)}
       {b.links && (
         <ul className="rd-links">
           {b.links.map((l) => (

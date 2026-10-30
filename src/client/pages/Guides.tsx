@@ -106,11 +106,18 @@ function SalahFlowView({ sheet, flow, onFlow }: { sheet: string; flow: SalahFlow
 
 export function Guides() {
   const { user } = useAuth();
+  // Deep links from the journal: ?g=<guide>&flow=<salah flow>&from=<day>
+  const [params] = useState(() => new URLSearchParams(window.location.search));
   const [activeId, setActiveId] = useState<Guide['id']>(() => {
-    const g = new URLSearchParams(window.location.search).get('g');
+    const g = params.get('g');
     return GUIDES.some((x) => x.id === g) ? (g as Guide['id']) : 'wudu';
   });
-  const [flowId, setFlowId] = useState<SalahFlow['id']>('two');
+  const [flowId, setFlowId] = useState<SalahFlow['id']>(() => {
+    const f = params.get('flow');
+    return SALAH_FLOWS.some((x) => x.id === f) ? (f as SalahFlow['id']) : 'two';
+  });
+  const fromDay = Number(params.get('from')) || 0;
+  const backLabel = fromDay >= 1 && fromDay <= 40 ? `Back to Day ${fromDay}` : 'My journal';
   const [lightbox, setLightbox] = useState(false);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -157,7 +164,7 @@ export function Guides() {
       <header className="guide-top">
         <Link to="/journal" className="guide-back">
           <Icon name="prev" />
-          <span>My journal</span>
+          <span>{backLabel}</span>
         </Link>
         <span className="guide-brand">
           RevertNote <i>·</i> Prayer guide
@@ -290,7 +297,7 @@ export function Guides() {
           </p>
           <Link to="/journal" className="ghost-btn">
             <Icon name="prev" />
-            <span>Back to my journal</span>
+            <span>{fromDay ? backLabel : 'Back to my journal'}</span>
           </Link>
         </footer>
       </main>

@@ -88,7 +88,9 @@ export type DayExtra =
   | { kind: 'callout'; arabic?: string; title: string; meaning: string }
   | { kind: 'fatihah' }
   | { kind: 'steps'; title: string; steps: string[] }
-  | { kind: 'guide'; id: 'wudu' | 'salah' | 'ghusl'; label: string };
+  | { kind: 'guide'; id: 'wudu' | 'salah' | 'ghusl'; flow?: 'two' | 'three' | 'four'; label: string; primary?: boolean }
+  /** "Ready to pray?" card linking to wudu, each salah flow, then ghusl. */
+  | { kind: 'pray' };
 
 export const SHAHADA = [
   { ar: 'أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ', en: 'I bear witness that there is no god but Allah' },
@@ -173,7 +175,10 @@ export const DAY_BOOK: Record<number, DayBook> = {
       'Indeed, there is so much to learn, and trying to absorb everything at once causes burnout. Should you find yourself overloaded with information while learning, it is best to focus entirely on the main foundation of belief in Islam, which is building a direct connection with your Creator before all else.',
       'Start with the basics: the literal words of God and remembrance of Him. Memorising Surah Al-Fatihah (in English, “The Opener”) is an excellent start, along with recitation of dhikr (remembrance of Allah) during free time: Subhanallah ×33, Alhamdulillah ×33, La Ilaha Illallah ×33, Allahu Akbar ×33.',
     ],
-    extras: [{ kind: 'fatihah' }],
+    extras: [
+      { kind: 'fatihah' },
+      { kind: 'guide', id: 'salah', label: 'Al-Fatihah is recited in every rak’ah — see where it fits in the prayer' },
+    ],
   },
   9: {
     body: [
@@ -185,15 +190,16 @@ export const DAY_BOOK: Record<number, DayBook> = {
   10: {
     body: [
       'At this point, you might have established the assurance that Allah offers you. Now, I’d like to introduce to you another powerful gesture: saying Bismillah (In the name of Allah) before any action. Doing so brings divine blessings and remembrance into your life by turning regular, mundane tasks into lasting rewards. This can include being mindful of the name of Allah as we eat or drink, as we get into a vehicle, or as we cross the street — literally everything that we do, we may recite Bismillah just before it so that we do it in His name. This may be the easiest way to remember Allah, and you are rewarded for doing so. Please take advantage of this blessing.',
+      'Wudu, too, begins with Bismillah — [[see the steps of wudu|g=wudu]].',
       'Also, a simple reminder: before entering the washroom, it is recommended that we say Bismillah and enter with the left foot first. When leaving, leave with the right foot first and say Alhamdulillah. The best practices of the Sunnah are taught in depth during the Hidayah Centre Foundation’s classes (face-to-face and virtual).',
     ],
   },
   11: {
     body: [
       'Salah is not an obligation meant to burden you; it is a direct line of communication between you and Allah, serving as your personal spiritual anchor five times a day. Think of it as a quiet break from a busy world. Each time you stand to pray, you are stepping away from all the noise to speak directly to the One who made you. It is a special moment that resets your heart, calms your mind, and reminds you that you are never truly alone.',
-      'Islam has five daily prayers: Fajr, Dhuhr, Asr, Maghrib and Isha. Each prayer has a different number of units (rakaat). So you don’t feel burdened, think of it as meeting your Creator during the five phases of the day. Fajr is at dawn, just before sunrise. Dhuhr is when the sun is at its highest (after lunchtime). Asr is the afternoon prayer. Maghrib is at sunset, and Isha is at night. Different places follow different times; in Malaysia, you may refer to e-Solat for the actual schedule.',
+      'Islam has five daily prayers: [[Fajr|g=salah&flow=two]], [[Dhuhr|g=salah&flow=four]], [[Asr|g=salah&flow=four]], [[Maghrib|g=salah&flow=three]] and [[Isha|g=salah&flow=four]]. Each prayer has a different number of units (rakaat). So you don’t feel burdened, think of it as meeting your Creator during the five phases of the day. Fajr is at dawn, just before sunrise. Dhuhr is when the sun is at its highest (after lunchtime). Asr is the afternoon prayer. Maghrib is at sunset, and Isha is at night. Different places follow different times; in Malaysia, you may refer to e-Solat for the actual schedule.',
     ],
-    extras: [{ kind: 'guide', id: 'salah', label: 'See the Salah guide' }],
+    extras: [{ kind: 'pray' }],
     links: [{ label: 'Prayer times in Malaysia (e-Solat JAKIM)', href: 'https://www.e-solat.gov.my/' }],
   },
   12: {
@@ -201,6 +207,10 @@ export const DAY_BOOK: Record<number, DayBook> = {
       'Surah Al-Fatihah is the ultimate prayer for daily guidance. When you read the Qur’an, you are listening to God’s actual words of comfort and wisdom. Even if you only read one or two verses in your own language, those words can change your whole day. It is like receiving a personal message of love and direction whenever you feel lost or confused.',
       'As a revert, learning the recitation of the Qur’an is crucial to our growth. Hidayah Centre Foundation offers courses for reverts, consisting of Islamic classes (basic and advanced) and learning to recite. “Iqra” was the first word revealed to the Prophet Muhammad by the Angel Jibril, meaning “recite” or “read.” He was hesitant to receive the revelation because he could not read or write, but the Angel Jibril taught him. We are so blessed today to have the exact word of Allah, as revealed to the Prophet, accessible through technology. There are plenty of resources that teach us Iqra step by step until the day we are able to read the Qur’an. All we have to do is go the extra mile to choose the resources that fit our learning style.',
       'A portable Qur’an and dhikr speaker is good, as you can listen to it non-stop. There is also an app you can install to read the translation in your preferred language.',
+    ],
+    extras: [
+      { kind: 'guide', id: 'salah', flow: 'two', label: 'Practise reciting Al-Fatihah in a 2-rak’ah prayer' },
+      { kind: 'pray' },
     ],
     links: [{ label: 'Read the Qur’an with translation (quran.com)', href: 'https://quran.com/' }],
   },
@@ -223,7 +233,8 @@ export const DAY_BOOK: Record<number, DayBook> = {
           'Feet: wash both feet up to the ankles three times, starting with the right foot and making sure water reaches between the toes.',
         ],
       },
-      { kind: 'guide', id: 'wudu', label: 'See the illustrated Wudu guide' },
+      { kind: 'guide', id: 'wudu', label: 'Open the illustrated Wudu guide', primary: true },
+      { kind: 'pray' },
     ],
     links: [{ label: 'Watch wudu performed (Instagram)', href: 'https://www.instagram.com/reel/DAzTFQeg8pK/' }],
   },
@@ -232,7 +243,7 @@ export const DAY_BOOK: Record<number, DayBook> = {
       'Do not worry if your Arabic pronunciation isn’t perfect yet. Allah hears your heart. Just go through the physical motions of prayer and repeat the phrases you know. Learning to pray is like learning to walk; it takes time, and stumbles are totally okay. Allah does not expect you to be a master overnight. He loves that you are trying. Just do your best with the movements and words you know right now, and trust that He sees your sincere effort.',
       'Each of the five daily prayers has a different number of units (rakaat), and the recited surahs must be in Arabic. While it’s true that Islam is a way of life, remember that learning is a process. Allah sees your heart and will reward your intention of getting to know Him deeper and your efforts in practising Islam. Allah is Ever-Merciful and Most Compassionate. He knows you very well, even the smallest fibres of your body and every strand of your hair. He is aware of our imperfections, yet He does not count them against us. Instead, He gives us ample time to adjust until the new lifestyle of a Muslim becomes embedded in our being. Just keep communing with your Creator — prayer (solat) is the best way to do it.',
     ],
-    extras: [{ kind: 'guide', id: 'salah', label: 'See the illustrated Salah guide' }],
+    extras: [{ kind: 'guide', id: 'salah', label: 'Open the illustrated Salah guide', primary: true }, { kind: 'pray' }],
     links: [
       { label: 'Detailed guidance on how to pray (alnaqwi.com)', href: 'https://www.alnaqwi.com' },
       { label: 'Kashoorga on YouTube', href: 'https://www.youtube.com/@kashoorga' },

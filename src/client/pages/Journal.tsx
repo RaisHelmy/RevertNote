@@ -553,7 +553,10 @@ export function Journal() {
             </div>
           </div>
 
-          <Link to="/guides" className="rail-feature">
+          <Link
+            to={`/guides?from=${d.n}`}
+            className={d.n >= 11 && d.n <= 14 ? 'rail-feature is-hot' : 'rail-feature'}
+          >
             <span className="rf-mark">
               <Icon name="guide" />
             </span>
