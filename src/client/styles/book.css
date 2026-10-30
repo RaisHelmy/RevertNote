@@ -1,0 +1,31 @@
+:root{--bk-paper:#F3EDDE;--bk-card:#FFFDF6;--bk-ink:#22302A;--bk-soft:#5C6860;--bk-gold:#A57F3C;--bk-green:#2F5A3A;--bk-line:rgba(34,48,42,.14)}
+.bk-page{min-height:100vh;background:var(--bk-paper);color:var(--bk-ink);font-family:'Newsreader',Georgia,serif}
+.bk-top{display:flex;justify-content:space-between;align-items:center;max-width:760px;margin:0 auto;padding:18px 16px;font-family:'Karla',system-ui,sans-serif;font-size:14px}
+.bk-top a{color:var(--bk-green);text-decoration:none}
+.bk-save{color:var(--bk-soft);font-size:12px}
+.bk-save-error{color:#8C3B2E}
+.bk-main{max-width:760px;margin:0 auto;padding:8px 16px 64px}
+.bk-eyebrow{margin:0 0 8px;font-family:'Karla',system-ui,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--bk-gold)}
+.bk-main h1{margin:0 0 12px;font-family:'Marcellus',Georgia,serif;font-weight:400;font-size:clamp(28px,5vw,40px);line-height:1.15;color:var(--bk-green)}
+.bk-byline{margin:0 0 22px;font-size:16px;color:var(--bk-soft)}
+.bk-toc{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 24px;font-family:'Karla',system-ui,sans-serif;font-size:14px}
+.bk-toc a{color:var(--bk-gold)}
+.bk-card{background:var(--bk-card);border:1px solid var(--bk-line);border-radius:12px;padding:22px;margin:0 0 18px;scroll-margin-top:16px}
+.bk-card h2{margin:0 0 6px;font-family:'Marcellus',Georgia,serif;font-weight:400;font-size:24px;color:var(--bk-green)}
+.bk-by{margin:0 0 14px!important;font-style:italic;color:var(--bk-soft)}
+.bk-prose p{margin:0 0 14px;font-size:17px;line-height:1.7}
+.bk-prose ul{margin:0;padding-left:20px}
+.bk-prose li{margin:0 0 8px}
+.bk-prose a{color:var(--bk-gold)}
+.bk-card label{display:block;margin:0 0 16px;font-size:16px}
+.bk-card input,.bk-card textarea{display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:9px 11px;border:1px solid var(--bk-line);border-radius:8px;background:#fff;font:inherit;font-size:16px;color:var(--bk-ink)}
+.bk-card textarea{resize:vertical;line-height:1.55}
+.bk-row2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.bk-letter p{margin:0 0 14px;font-style:italic}
+.bk-sign{text-align:center}
+.bk-table{width:100%;border-collapse:collapse}
+.bk-table th{text-align:left;padding:0 6px 10px;font-size:15px}
+.bk-table td{padding:4px 6px}
+.bk-table input{margin:0}
+.bk-credit{margin-top:28px;font-size:14px;color:var(--bk-soft);text-align:center}
+@media (max-width:600px){.bk-row2{grid-template-columns:1fr}.bk-card{padding:16px}.bk-table th{font-size:13px}}

@@ -133,3 +133,26 @@ export interface Entry extends EntryMeta {
 export interface AdminUserRow extends PublicUser {
   daysLit: number;
 }
+
+/** Free-text fields of the "My Shahadah Story" page. Keys are fixed; values are capped. */
+export const STORY_FIELDS = [
+  'legalName',
+  'muslimName',
+  'becoming',
+  'why',
+  'people',
+  'duaList',
+  'gratitudeList',
+  'learned',
+  'challenge',
+  'dua',
+] as const;
+export const STORY_ROWS = 4;
+
+const storyText = z.string().max(10_000);
+export const storySchema = z.object({
+  fields: z.partialRecord(z.enum(STORY_FIELDS), storyText).default({}),
+  growthPlan: z.array(z.string().max(500)).max(STORY_ROWS).default([]),
+  ramadanGoals: z.array(z.string().max(500)).max(STORY_ROWS).default([]),
+});
+export type Story = z.infer<typeof storySchema>;

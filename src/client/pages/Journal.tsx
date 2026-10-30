@@ -3,7 +3,9 @@ import { Link } from 'react-router';
 import logo from '../assets/hcf-logo-white.png';
 import type { Entry, EntryMeta, PublicUser } from '../../shared/schemas';
 import { Lamp } from '../components/Lamp';
+import { DayReading } from '../components/DayReading';
 import { Icon } from '../components/Icon';
+import { AUTHOR, BOOK_TITLE, PUBLISHER } from '../content/book';
 import { clampDay, DAYS, pad2, WEEK_THEMES, WEEK_WORDS } from '../content/days';
 import { api } from '../lib/api';
 import { useAuth } from '../lib/auth';
@@ -587,6 +589,8 @@ export function Journal() {
               />
             </div>
             <div className="rail-actions">
+              <Link to="/story" className="rail-link"><span>My Shahadah Story</span></Link>
+              <Link to="/book" className="rail-link"><span>About the book</span></Link>
               <Link to="/#about" className="rail-link"><span>About us</span></Link>
               {user.role === 'admin' && (
                 <Link to="/admin" className="rail-link">
@@ -708,6 +712,8 @@ export function Journal() {
               <blockquote>“{d.v}”</blockquote>
               <figcaption>{d.r}</figcaption>
             </figure>
+
+            <DayReading day={d.n} />
 
             <section className="notebook" aria-label="Your note for this day">
               <div className="nb-head">
@@ -859,8 +865,7 @@ export function Journal() {
 
             <footer className="colophon">
               <p>
-                Prompts and verses from <em>Welcome Home — A 40-Day Companion for New Muslims</em> (Hidayah Centre
-                Foundation).
+                Text, prompts and verses from <em>{BOOK_TITLE}</em> by {AUTHOR}, published by {PUBLISHER}.
                 <br />
                 Your notes are saved to your account, so you can return from any device.
               </p>

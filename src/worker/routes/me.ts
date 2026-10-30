@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
-import { backupSchema, changePasswordSchema, putEntrySchema, updateMeSchema } from '../../shared/schemas';
+import { backupSchema, changePasswordSchema, putEntrySchema, storySchema, updateMeSchema } from '../../shared/schemas';
 import { createSession, rateLimit, requireAuth, revokeAllSessions, toPublicUser } from '../auth';
 import { hashPassword, verifyPassword } from '../crypto';
 import { exportBackup, getEntry, importBackup, listEntryMetas, parseDay, upsertEntry } from '../entries';
@@ -76,5 +76,25 @@ meRoutes.put('/entries/:day', async (c) => {
   const patch = await body(c, putEntrySchema);
   const updatedAt = Date.now();
   await upsertEntry(c.env.DB, c.get('user').id, day, patch, updatedAt).run();
+  return c.json({ ok: true, updatedAt });
+});
+
+meRoutes.get('/story', async (c) => {
+  const r = await c.env.DB.prepare('SELECT data, updated_at FROM stories WHERE user_id = ?')
+    .bind(c.get('user').id)
+    .first<{ data: string; updated_at: number }>();
+  const story = storySchema.parse(r ? JSON.parse(r.data) : {});
+  return c.json({ story, updatedAt: r?.updated_at ?? 0 });
+});
+
+meRoutes.put('/story', async (c) => {
+  const story = await body(c, storySchema);
+  const updatedAt = Date.now();
+  await c.env.DB.prepare(
+    `INSERT INTO stories (user_id, data, updated_at) VALUES (?, ?, ?)
+     ON CONFLICT (user_id) DO UPDATE SET data = excluded.data, updated_at = excluded.updated_at`,
+  )
+    .bind(c.get('user').id, JSON.stringify(story), updatedAt)
+    .run();
   return c.json({ ok: true, updatedAt });
 });

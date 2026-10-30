@@ -5,6 +5,7 @@ import logoWhite from '../assets/hcf-logo-white.png';
 import wuduGuide from '../assets/wudu-original.jpg';
 import salahGuide from '../assets/salah-original.jpg';
 import ghuslGuide from '../assets/ghusl-original.jpg';
+import { AUTHOR, BOOK_FAQ, BOOK_TITLE, PUBLISHER } from '../content/book';
 import { DAYS, pad2, WEEK_THEMES, WEEK_WORDS } from '../content/days';
 import { useAuth } from '../lib/auth';
 import { Sketchpad } from '../lib/sketchpad';
@@ -147,7 +148,7 @@ export function Landing() {
           <span className="brand-word">Welcome Home</span>
         </a>
         <nav className="nav-links" aria-label="Sections">
-          <a href="#days">The forty days</a>
+          <a href="#days">The 40 days</a>
           <a href="#modes">Write &amp; draw</a>
           <a href="#privacy">Privacy</a>
           <a href="#resources">Prayer guides</a>
@@ -210,7 +211,7 @@ export function Landing() {
 
           <div className="hero-copy">
             <p className="eyebrow on-dark">A 40-day companion for new Muslims</p>
-            <h1 id="heroTitle">Forty quiet days to make this faith your own.</h1>
+            <h1 id="heroTitle">40 quiet days to make this faith your own.</h1>
             <p className="hero-sub">
               Welcome Home is a free journal for the 40-day guide. Read the day, then write what is true — or draw what
               has no words yet.
@@ -220,7 +221,7 @@ export function Landing() {
                 {cta.label}
               </Link>
               <a className="btn-ghost" href="#days">
-                See the forty days
+                See the 40 days
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M12 5v14M6 13l6 6 6-6" />
                 </svg>
@@ -266,7 +267,7 @@ export function Landing() {
         <section className="sec days-sec" id="days" aria-labelledby="daysTitle">
           <div className="wrap">
             <div className="days-head reveal">
-              <p className="eyebrow">The shape of forty days</p>
+              <p className="eyebrow">The shape of 40 days</p>
               <h2 className="display" id="daysTitle">
                 It does not ask you to arrive. It asks you to keep showing up.
               </h2>
@@ -520,8 +521,13 @@ export function Landing() {
               <p className="eyebrow">About us</p>
               <h2 className="display" id="aboutTitle">A companion for your first steps in Islam.</h2>
               <p className="lede">Welcome Home offers a gentle space for new Muslims to reflect, learn and grow across 40 days in six weeks.</p>
-              <p className="lede">Based on <em>Welcome Home — A 40-Day Companion for New Muslims</em> by Hidayah Centre Foundation. Special credit: Faizah Ayala.</p>
+              <p className="lede">Based on <em>{BOOK_TITLE}</em>, written by <strong>{AUTHOR}</strong> and published by {PUBLISHER}.</p>
               <p className="lede">This journal supports learning alongside trusted teachers and the Muslim community.</p>
+              <p className="lede">
+                Read the book’s <Link to="/book#foreword">Foreword</Link>, the author’s{' '}
+                <Link to="/book#acknowledgment">Acknowledgment</Link>, the <Link to="/book#introduction">Introduction</Link>{' '}
+                and <Link to="/book#author">About the Author</Link>.
+              </p>
             </div>
           </div>
         </section>
@@ -559,8 +565,8 @@ export function Landing() {
                 The guide is theirs. The pages are yours.
               </h2>
               <p className="lede">
-                Welcome Home — A 40-Day Companion for New Muslims was written and published by Hidayah Centre
-                Foundation. The journal follows its daily reflections, with special acknowledgement to Faizah Ayala.
+                <em>{BOOK_TITLE}</em> was written by {AUTHOR} and is published and managed by {PUBLISHER}. The
+                journal follows its daily text, reflections and verses.
               </p>
               <p className="lede">The journal does not replace a teacher, a mosque, or a circle of friends. Keep all three close.</p>
             </div>
@@ -576,7 +582,7 @@ export function Landing() {
               </h2>
             </div>
             <div className="faq-list reveal">
-              {FAQ.map(([q, a]) => (
+              {FAQ().map(([q, a]) => (
                 <details className="faq-item" key={q}>
                   <summary>
                     {q}
@@ -625,7 +631,9 @@ export function Landing() {
             <span>
               A free companion to <em>Welcome Home — A 40-Day Companion for New Muslims</em>.
             </span>
-            <span>The 40-day guide © Hidayah Centre Foundation</span>
+            <span>
+              The 40-day guide © {AUTHOR} · Published by {PUBLISHER}
+            </span>
             <span>Journal © 2026</span>
           </div>
         </div>
@@ -634,16 +642,18 @@ export function Landing() {
   );
 }
 
-const FAQ: [string, string][] = [
+const FAQ = (): [string, string][] => [...BOOK_FAQ.flatMap((g) => g.items), ...APP_FAQ];
+
+const APP_FAQ: [string, string][] = [
   [
     'I am not a brand-new Muslim. Can I still use it?',
-    'Yes. The forty days were written for people who have just accepted Islam, but the questions — fear, family, habits, belonging — are not reserved for week one. Start at day one, or open the day that matches where you actually are.',
+    'Yes. The 40 days were written for people who have just accepted Islam, but the questions — fear, family, habits, belonging — are not reserved for week one. Start at day one, or open the day that matches where you actually are.',
   ],
   [
     'I stopped at day twelve. What now?',
     'Pick it back up. Nothing expires and no streak breaks. Every day stays exactly where you left it, with the words you wrote.',
   ],
-  ['Is it really free?', 'Yes — all forty days, writing, drawing, printing. No card, no trial that quietly runs out.'],
+  ['Is it really free?', 'Yes — all 40 days, writing, drawing, printing. No card, no trial that quietly runs out.'],
   [
     'Where do my notes live?',
     'In your account, tied to your sign-in, so a phone and a laptop show the same page. You can export everything whenever you want, and ask the admin team to delete your account.',

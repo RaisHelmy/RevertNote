@@ -1,0 +1,23 @@
+.reading{max-width:640px;margin:34px auto 0;padding:0 6px;font-family:var(--f-serif,Georgia,serif);color:var(--ink,#22302A)}
+.reading > p{margin:0 0 16px;font-size:17px;line-height:1.7;text-wrap:pretty}
+.reading figure{margin:22px 0;padding:18px 20px;border:1px solid rgba(194,161,92,.45);border-radius:10px;background:rgba(255,253,246,.7)}
+.reading figcaption{margin:0 0 12px;font-family:var(--f-ui,system-ui,sans-serif);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep,#A57F3C)}
+.rd-shahada table{width:100%;border-collapse:collapse}
+.rd-shahada td{padding:12px 10px;border-top:1px solid rgba(34,48,42,.1);vertical-align:middle;font-size:16px}
+.rd-shahada tr:first-child td{border-top:0}
+.rd-shahada td[lang=ar]{font-family:var(--f-ar,serif);font-size:24px;line-height:1.6;width:50%;text-align:right}
+.rd-callout{margin:22px 0;padding:18px 20px;border-left:3px solid var(--gold,#C2A15C);background:rgba(194,161,92,.09);border-radius:0 10px 10px 0}
+.rd-callout p{margin:0}
+.rd-ar{font-family:var(--f-ar,serif);font-size:24px;margin-bottom:6px!important}
+.rd-callout-title{font-weight:600;font-size:17px}
+.rd-callout-meaning{font-style:italic;color:var(--ink-soft,#5C6860);margin-top:4px!important}
+.rd-fatihah ol,.rd-steps ol{margin:0;padding-left:22px}
+.rd-fatihah li{margin:0 0 10px}
+.rd-tr{display:block;font-weight:600;font-style:italic;color:#3E6B3A}
+.rd-en{display:block;font-size:15px;color:var(--ink-soft,#5C6860)}
+.rd-steps li{margin:0 0 8px;font-size:16px;line-height:1.55}
+.rd-guide{margin:0 0 16px;font-family:var(--f-ui,system-ui,sans-serif);font-size:14px}
+.rd-guide a,.rd-links a{color:var(--gold-deep,#A57F3C);text-decoration:underline;text-underline-offset:3px}
+.rd-links{margin:4px 0 0;padding:0;list-style:none;font-family:var(--f-ui,system-ui,sans-serif);font-size:14px}
+.rd-links li{margin:0 0 6px}
+@media (max-width:600px){.reading > p{font-size:16px}.rd-shahada td{display:block;width:auto!important;text-align:left!important;border-top:0;padding:4px 0}.rd-shahada tr{display:block;padding:8px 0;border-top:1px solid rgba(34,48,42,.1)}}

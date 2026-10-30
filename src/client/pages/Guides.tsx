@@ -25,7 +25,10 @@ function StepPlate({ guide, step }: { guide: Guide; step: GuideStep }) {
 
 export function Guides() {
   const { user } = useAuth();
-  const [activeId, setActiveId] = useState<Guide['id']>('wudu');
+  const [activeId, setActiveId] = useState<Guide['id']>(() => {
+    const g = new URLSearchParams(window.location.search).get('g');
+    return GUIDES.some((x) => x.id === g) ? (g as Guide['id']) : 'wudu';
+  });
   const [lightbox, setLightbox] = useState(false);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
