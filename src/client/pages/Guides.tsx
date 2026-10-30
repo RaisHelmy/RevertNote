@@ -47,6 +47,8 @@ function SayLine({ say, lead }: { say: SalahSay; lead?: string }) {
   );
 }
 
+const SALAH_PLAYLIST = 'PL6ExH-FBPXTRMRJaUfcmXYznH5yC6d-r8';
+
 function SalahFlowView({ sheet, flow, onFlow }: { sheet: string; flow: SalahFlow; onFlow: (id: SalahFlow['id']) => void }) {
   return (
     <div className="salah-flow">
@@ -71,6 +73,26 @@ function SalahFlowView({ sheet, flow, onFlow }: { sheet: string; flow: SalahFlow
       </p>
 
       <p className="salah-note">{flow.note}</p>
+
+      <figure className="salah-video">
+        <div className="sv-frame">
+          <iframe
+            key={flow.video.id}
+            src={`https://www.youtube-nocookie.com/embed/${flow.video.id}?rel=0&list=${SALAH_PLAYLIST}`}
+            title={flow.video.title}
+            loading="lazy"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        </div>
+        <figcaption>
+          Watch: {flow.video.title} ·{' '}
+          <a href={`https://www.youtube.com/playlist?list=${SALAH_PLAYLIST}`} target="_blank" rel="noopener noreferrer">
+            Full playlist ↗
+          </a>
+        </figcaption>
+      </figure>
 
       <ol className="rakaats">
         {flow.rakaat.map((r) => (

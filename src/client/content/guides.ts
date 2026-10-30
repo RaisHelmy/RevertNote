@@ -166,6 +166,8 @@ export type SalahFlow = {
   prayers: string;
   note: string;
   rakaat: SalahRakaat[];
+  /** YouTube video id of a full walkthrough (Prayer Man, "How to pray … for beginners"). */
+  video: { id: string; title: string };
 };
 
 const TAKBIR: SalahSay = { ar: 'اللهُ أَكْبَرُ', tr: 'Allāhu Akbar', en: 'Allah is the greatest' };
@@ -308,6 +310,7 @@ export const SALAH_FLOWS: SalahFlow[] = [
     rakaatLabel: '2 rakʿah',
     prayers: 'Fajr · Ṣubḥ',
     note: 'The shortest prayer. You sit only once, at the very end.',
+    video: { id: 'YhgSe6DFK-0', title: 'How to pray Fajr (Subuh), 2 rakʿah' },
     rakaat: [rakah(1, { surah: true }), rakah(2, { surah: true, after: 'end' })],
   },
   {
@@ -316,6 +319,7 @@ export const SALAH_FLOWS: SalahFlow[] = [
     rakaatLabel: '3 rakʿah',
     prayers: 'Maghrib',
     note: 'You sit after the second rakʿah for the first tashahhud, then stand for the third.',
+    video: { id: '-7bw8v_MPmY', title: 'How to pray Maghrib, 3 rakʿah' },
     rakaat: [
       rakah(1, { surah: true }),
       rakah(2, { surah: true, after: 'awwal' }),
@@ -328,6 +332,7 @@ export const SALAH_FLOWS: SalahFlow[] = [
     rakaatLabel: '4 rakʿah',
     prayers: 'Zuhr · ʿAṣr · ʿIshāʾ',
     note: 'Two sittings: the first tashahhud after rakʿah two, the full tashahhud at the end.',
+    video: { id: 'zXjFF35J9PE', title: 'How to pray Zuhr (Zohor), 4 rakʿah' },
     rakaat: [
       rakah(1, { surah: true }),
       rakah(2, { surah: true, after: 'awwal' }),
