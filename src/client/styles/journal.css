@@ -345,8 +345,8 @@ body.lock{overflow:hidden}
 @media (max-width:700px){
   .topbar{height:54px;padding:0 13px;gap:8px}
   .today{display:none}
-  .ghost-btn span{display:none}
-  .ghost-btn{padding:8px}
+  .topbar .ghost-btn span{display:none}
+  .topbar .ghost-btn{padding:8px}
   .page{padding:18px 12px 48px}
   .niche{min-height:340px;padding:82px 22px 60px}
   .lamp{width:36px;height:52px}

@@ -5,6 +5,7 @@ import { AdminLayout } from './pages/admin/AdminLayout';
 import { CreateUser } from './pages/admin/CreateUser';
 import { UserDetail } from './pages/admin/UserDetail';
 import { Users } from './pages/admin/Users';
+import { Guides } from './pages/Guides';
 import { Journal } from './pages/Journal';
 import { Landing } from './pages/Landing';
 import { SignIn } from './pages/SignIn';
@@ -28,6 +29,7 @@ export function App() {
           <Route path="/signup" element={<Gate need="guest"><SignUp /></Gate>} />
           <Route path="/" element={<Landing />} />
           <Route path="/journal" element={<Gate need="user"><Journal /></Gate>} />
+          <Route path="/guides" element={<Gate need="user"><Guides /></Gate>} />
           <Route path="/admin" element={<Gate need="admin"><AdminLayout /></Gate>}>
             <Route index element={<Users />} />
             <Route path="users/new" element={<CreateUser />} />
