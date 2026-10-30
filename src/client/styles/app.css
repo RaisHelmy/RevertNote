@@ -34,6 +34,24 @@ button:disabled{cursor:default;opacity:.55}
 .rail-actions .rail-link:hover{background:rgba(255,255,255,.05);color:#F7F0DF}
 .rail-actions .rail-link svg{width:13px;height:13px}
 .rail-actions button span{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* prayer guide entry, kept at the top of the rail as part of the app itself */
+.rail-feature{
+  display:flex;align-items:center;gap:10px;margin-top:13px;padding:10px 11px;
+  border:1px solid rgba(194,161,92,.28);border-radius:10px;
+  background:linear-gradient(180deg,rgba(194,161,92,.15),rgba(194,161,92,.04));
+  color:#F7F0DF;text-decoration:none;
+  transition:background .2s,border-color .2s;
+}
+.rail-feature:hover{background:rgba(194,161,92,.2);border-color:rgba(194,161,92,.52)}
+.rf-mark{flex:none;display:grid;place-items:center;width:31px;height:31px;border-radius:8px;background:rgba(194,161,92,.18);color:#E3C688}
+.rf-mark svg{width:16px;height:16px}
+.rf-copy{flex:1;min-width:0;display:grid;gap:2px}
+.rf-copy b{font-family:var(--f-serif);font-size:14px;font-weight:500;letter-spacing:.01em}
+.rf-copy small{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:rgba(147,167,154,.92)}
+.rf-arrow{flex:none;display:grid;place-items:center;color:rgba(194,161,92,.72)}
+.rf-arrow svg{width:13px;height:13px}
+.guide-shortcut{text-decoration:none}
 .canvas-wrap.loading canvas{pointer-events:none}
 #noteInput:disabled{background-color:transparent;opacity:.6}
 .import-banner{

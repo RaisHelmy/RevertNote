@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
-import logo from '../assets/hcf-logo.png';
+import logoGold from '../assets/hcf-logo-gold.png';
+import logoWhite from '../assets/hcf-logo-white.png';
 import wuduGuide from '../assets/wudu-original.jpg';
 import salahGuide from '../assets/salah-original.jpg';
 import ghuslGuide from '../assets/ghusl-original.jpg';
@@ -141,7 +142,7 @@ export function Landing() {
 
       <header className={'nav' + (stuck ? ' stuck' : '')}>
         <a className="brand" href="#top" aria-label="Welcome Home, home">
-          <img className="nav-hcf-logo" src={logo} alt="Hidayah Centre Foundation" />
+          <img className="nav-hcf-logo" src={logoWhite} alt="Hidayah Centre Foundation" width={46} height={28} decoding="async" />
           <LampMark className="brand-mark" strokeWidth={1.4} />
           <span className="brand-word">Welcome Home</span>
         </a>
@@ -512,7 +513,7 @@ export function Landing() {
         <section className="sec book-sec" id="about" aria-labelledby="aboutTitle">
           <div className="wrap book-grid">
             <div className="book-plate reveal">
-              <img className="hcf-logo" src={logo} alt="Hidayah Centre Foundation" width={430} height={276} loading="lazy" decoding="async" />
+              <img className="hcf-logo" src={logoGold} alt="Hidayah Centre Foundation" width={430} height={258} loading="lazy" decoding="async" />
               <p>Publisher of the 40-day guide</p>
             </div>
             <div className="book-copy reveal">
@@ -543,10 +544,10 @@ export function Landing() {
             <div className="book-plate reveal">
               <img
                 className="hcf-logo"
-                src={logo}
+                src={logoGold}
                 alt="Hidayah Centre Foundation"
                 width={430}
-                height={276}
+                height={258}
                 loading="lazy"
                 decoding="async"
               />

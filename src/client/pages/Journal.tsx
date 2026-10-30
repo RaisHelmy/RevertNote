@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Link } from 'react-router';
-import logo from '../assets/hcf-logo.png';
+import logo from '../assets/hcf-logo-white.png';
 import type { Entry, EntryMeta, PublicUser } from '../../shared/schemas';
 import { Lamp } from '../components/Lamp';
 import { Icon } from '../components/Icon';
@@ -222,6 +222,9 @@ export function Journal() {
       document.removeEventListener('visibilitychange', onVis);
     };
   }, [saveSketch]);
+
+  // Leaving the journal (e.g. for the prayer guide) should not drop a pending autosave.
+  useEffect(() => () => void flush(), [flush]);
 
   /* ---------- navigation ---------- */
   const selectDay = useCallback(
@@ -529,7 +532,7 @@ export function Journal() {
             <Icon name="close" />
           </button>
           <div className="brand">
-            <Link to="/#about" aria-label="Hidayah Centre Foundation and About Us"><img src={logo} alt="Hidayah Centre Foundation" style={{ width: 100, maxHeight: 64, objectFit: "contain", marginBottom: 10 }} /></Link>
+            <Link to="/#about" aria-label="Hidayah Centre Foundation and About Us"><img src={logo} alt="Hidayah Centre Foundation" width={100} height={60} decoding="async" style={{ width: 100, height: "auto", objectFit: "contain", marginBottom: 10 }} /></Link>
             <div className="bismillah" lang="ar" dir="rtl">
               بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
             </div>
@@ -547,6 +550,19 @@ export function Journal() {
               <span className="progress-fill" style={{ width: `${(litCount / 40) * 100}%` }} />
             </div>
           </div>
+
+          <Link to="/guides" className="rail-feature">
+            <span className="rf-mark">
+              <Icon name="guide" />
+            </span>
+            <span className="rf-copy">
+              <b>Prayer guide</b>
+              <small>Wudu · Salah · Ghusl</small>
+            </span>
+            <span className="rf-arrow" aria-hidden="true">
+              <Icon name="next" />
+            </span>
+          </Link>
 
           <nav className="rail-nav" ref={navRef} aria-label="Days 1 to 40">
             {railItems}
@@ -571,7 +587,6 @@ export function Journal() {
               />
             </div>
             <div className="rail-actions">
-              <Link to="/#resources" className="rail-link"><span>Prayer guides</span></Link>
               <Link to="/#about" className="rail-link"><span>About us</span></Link>
               {user.role === 'admin' && (
                 <Link to="/admin" className="rail-link">
@@ -605,6 +620,10 @@ export function Journal() {
             <span className="day-label">Day {pad2(d.n)} / 40</span>
             <span className="topbar-spacer" />
             <span className="today">{today}</span>
+            <Link to="/guides" className="ghost-btn guide-shortcut" aria-label="Prayer guide" title="Open the prayer guide">
+              <Icon name="guide" />
+              <span>Prayer guide</span>
+            </Link>
             <button className="ghost-btn" title="Print this day with your note" onClick={printDay}>
               <Icon name="print" />
               <span>Print this day</span>
