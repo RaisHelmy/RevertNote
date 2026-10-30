@@ -46,7 +46,7 @@ export function Landing() {
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
-    document.title = 'Welcome Home — A free 40-day journal for new Muslims';
+    document.title = 'Welcome Home — A free 40-day, six-week journal for new Muslims';
     const html = document.documentElement;
     html.style.scrollBehavior = 'smooth';
     const onScroll = () => setStuck(window.scrollY > 24);
@@ -138,6 +138,7 @@ export function Landing() {
 
       <header className={'nav' + (stuck ? ' stuck' : '')}>
         <a className="brand" href="#top" aria-label="Welcome Home, home">
+          <img className="nav-hcf-logo" src={logo} alt="Hidayah Centre Foundation" />
           <LampMark className="brand-mark" strokeWidth={1.4} />
           <span className="brand-word">Welcome Home</span>
         </a>
@@ -145,6 +146,8 @@ export function Landing() {
           <a href="#days">The forty days</a>
           <a href="#modes">Write &amp; draw</a>
           <a href="#privacy">Privacy</a>
+          <a href="#resources">Prayer guides</a>
+          <a href="#about">About us</a>
           <a href="#questions">Questions</a>
         </nav>
         {!user && (
@@ -271,7 +274,7 @@ export function Landing() {
             </div>
             <div className="days-grid reveal">
               <div className="weeks" onKeyDown={onDotsKey}>
-                {[1, 2, 3, 4, 5].map((w) => {
+                {[1, 2, 3, 4, 5, 6].map((w) => {
                   const list = DAYS.filter((d) => d.w === w);
                   return (
                     <div className="week-row" key={w}>
@@ -499,6 +502,35 @@ export function Landing() {
                 </h3>
                 <p>There is no place to post and nobody to perform for. This is between you and the page.</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="sec book-sec" id="about" aria-labelledby="aboutTitle">
+          <div className="wrap book-grid">
+            <div className="book-plate reveal">
+              <img className="hcf-logo" src={logo} alt="Hidayah Centre Foundation" width={430} height={276} loading="lazy" decoding="async" />
+              <p>Publisher of the 40-day guide</p>
+            </div>
+            <div className="book-copy reveal">
+              <p className="eyebrow">About us</p>
+              <h2 className="display" id="aboutTitle">A companion for your first steps in Islam.</h2>
+              <p className="lede">Welcome Home offers a gentle space for new Muslims to reflect, learn and grow across 40 days in six weeks.</p>
+              <p className="lede">Based on <em>Welcome Home — A 40-Day Companion for New Muslims</em> by Hidayah Centre Foundation. Special credit: Faizah Ayala.</p>
+              <p className="lede">This journal supports learning alongside trusted teachers and the Muslim community.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="sec book-sec" id="resources" aria-labelledby="resourcesTitle">
+          <div className="wrap">
+            <p className="eyebrow">Essential worship</p>
+            <h2 className="display" id="resourcesTitle">A practical place to begin.</h2>
+            <p className="lede">Learn the basics of wudu (ablution), salah (prayer) and ghusl (ritual bath). Follow the illustrated steps and ask a qualified teacher whenever you need guidance.</p>
+            <div className="worship-guides">
+              <article><h3>Wudu · Ablution</h3><ol><li>Make the intention and begin with Bismillah.</li><li>Wash both hands.</li><li>Rinse mouth and nose.</li><li>Wash the face.</li><li>Wash arms up to and including elbows.</li><li>Wipe the head and ears.</li><li>Wash both feet including ankles.</li></ol></article>
+              <article><h3>Salah · Prayer</h3><ol><li>Prepare with wudu, proper covering, prayer time and qiblah.</li><li>Stand and say takbir.</li><li>Recite Al-Fatihah and the appropriate recitation.</li><li>Bow (ruku'), then stand upright.</li><li>Prostrate (sujud), sit, then prostrate again.</li><li>Continue the required rak'ahs, finish with tashahhud and salam.</li></ol></article>
+              <article><h3>Ghusl · Ritual bath</h3><ol><li>Make the intention to remove major ritual impurity.</li><li>Remove any physical impurity and wash private parts.</li><li>Perform wudu as part of the recommended complete method.</li><li>Ensure water reaches the entire body, scalp and hair roots.</li></ol></article>
             </div>
           </div>
         </section>
