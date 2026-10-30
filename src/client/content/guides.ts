@@ -309,7 +309,7 @@ export const SALAH_FLOWS: SalahFlow[] = [
     count: 2,
     rakaatLabel: '2 rakʿah',
     prayers: 'Fajr · Ṣubḥ',
-    note: 'The shortest prayer. You sit only once, at the very end.',
+    note: 'The shortest prayer.',
     video: { id: 'YhgSe6DFK-0', title: 'How to pray Fajr (Subuh), 2 rakʿah' },
     rakaat: [rakah(1, { surah: true }), rakah(2, { surah: true, after: 'end' })],
   },
