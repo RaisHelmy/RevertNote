@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import logo from '../assets/hcf-logo.png';
-import wuduGuide from '../assets/wudu-guide.svg';
-import salahGuide from '../assets/salah-guide.svg';
-import ghuslGuide from '../assets/ghusl-guide.svg';
+import wuduGuide from '../assets/wudu-original.jpg';
+import salahGuide from '../assets/salah-original.jpg';
+import ghuslGuide from '../assets/ghusl-original.jpg';
 import { DAYS, pad2, WEEK_THEMES, WEEK_WORDS } from '../content/days';
 import { useAuth } from '../lib/auth';
 import { Sketchpad } from '../lib/sketchpad';
@@ -529,7 +529,7 @@ export function Landing() {
           <div className="wrap">
             <p className="eyebrow">Essential worship</p>
             <h2 className="display" id="resourcesTitle">A practical place to begin.</h2>
-            <p className="lede">Learn the basics of wudu (ablution), salah (prayer) and ghusl (ritual bath). Follow the illustrated steps and ask a qualified teacher whenever you need guidance.</p>
+            <p className="lede">Learn the basics of wudu (ablution), salah (prayer) and ghusl (ritual bath). The illustrations below are sourced from the supplied PowerPoint, The Concept of Worship in Islam. Follow the steps and ask a qualified teacher whenever you need guidance.</p>
             <div className="worship-guides">
               <article><h3>Wudu · Ablution</h3><img src={wuduGuide} alt="Wudu · Ablution step-by-step infographic" loading="lazy" style={{width:'100%',height:'auto',borderRadius:8}} /><ol><li>Make the intention and begin with Bismillah.</li><li>Wash both hands.</li><li>Rinse mouth and nose.</li><li>Wash the face.</li><li>Wash arms up to and including elbows.</li><li>Wipe the head and ears.</li><li>Wash both feet including ankles.</li></ol></article>
               <article><h3>Salah · Prayer</h3><img src={salahGuide} alt="Salah · Prayer step-by-step infographic" loading="lazy" style={{width:'100%',height:'auto',borderRadius:8}} /><ol><li>Prepare with wudu, proper covering, prayer time and qiblah.</li><li>Stand and say takbir.</li><li>Recite Al-Fatihah and the appropriate recitation.</li><li>Bow (ruku'), then stand upright.</li><li>Prostrate (sujud), sit, then prostrate again.</li><li>Continue the required rak'ahs, finish with tashahhud and salam.</li></ol></article>
