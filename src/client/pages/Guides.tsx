@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
-import { GUIDES, type Guide, type GuideStep } from '../content/guides';
+import {
+  GUIDES,
+  SALAH_FLOWS,
+  type Guide,
+  type GuideStep,
+  type SalahFlow,
+  type SalahSay,
+} from '../content/guides';
 import { Lamp } from '../components/Lamp';
 import { Icon } from '../components/Icon';
 import { useAuth } from '../lib/auth';
@@ -23,13 +30,90 @@ function StepPlate({ guide, step }: { guide: Guide; step: GuideStep }) {
   );
 }
 
+function SayLine({ say, lead }: { say: SalahSay; lead?: string }) {
+  return (
+    <p className="mv-say">
+      {say.ar && (
+        <span className="mv-ar" lang="ar" dir="rtl">
+          {say.ar}
+        </span>
+      )}
+      <span className="mv-tr">
+        {lead && <em>{lead} </em>}
+        {say.tr}
+      </span>
+      <span className="mv-en">{say.en}</span>
+    </p>
+  );
+}
+
+function SalahFlowView({ sheet, flow, onFlow }: { sheet: string; flow: SalahFlow; onFlow: (id: SalahFlow['id']) => void }) {
+  return (
+    <div className="salah-flow">
+      <div className="salah-switch" role="group" aria-label="Choose how many rakʿah">
+        {SALAH_FLOWS.map((f) => (
+          <button
+            key={f.id}
+            type="button"
+            className="sf-chip"
+            aria-pressed={f.id === flow.id}
+            onClick={() => onFlow(f.id)}
+          >
+            <b>{f.rakaatLabel}</b>
+            <small>{f.prayers}</small>
+          </button>
+        ))}
+      </div>
+
+      <p className="salah-loop">
+        One rakʿah is a single cycle: <b>stand</b>, <b>bow</b>, then <b>prostrate twice</b>. Every prayer below is that
+        cycle repeated — the only things that change are how many times you repeat it and where you sit.
+      </p>
+
+      <p className="salah-note">{flow.note}</p>
+
+      <ol className="rakaats">
+        {flow.rakaat.map((r) => (
+          <li className="rakaat" key={r.n}>
+            <header className="rakaat-head">
+              <span className="rk-num" aria-hidden="true">
+                {r.n}
+              </span>
+              <h3>Rakʿah {r.n}</h3>
+              <span className="rk-tag">{r.recite}</span>
+            </header>
+            <ol className="moves">
+              {r.moves.map((m) => (
+                <li className={'move' + (m.tone ? ` move-${m.tone}` : '')} key={m.title}>
+                  <div className="g-plate move-plate" data-guide="salah" data-row={m.cell.row} data-col={m.cell.col}>
+                    <img src={sheet} alt="" loading="lazy" decoding="async" />
+                  </div>
+                  <div className="move-body">
+                    <h4>{m.title}</h4>
+                    <p className="mv-detail">{m.detail}</p>
+                    {m.say && <SayLine say={m.say} />}
+                    {m.then && <SayLine say={m.then} lead="then reply:" />}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
 export function Guides() {
   const { user } = useAuth();
   const [activeId, setActiveId] = useState<Guide['id']>('wudu');
+  const [flowId, setFlowId] = useState<SalahFlow['id']>('two');
   const [lightbox, setLightbox] = useState(false);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const guide = GUIDES.find((g) => g.id === activeId) ?? GUIDES[0]!;
+  const flow = SALAH_FLOWS.find((f) => f.id === flowId) ?? SALAH_FLOWS[0]!;
+  const steps = guide.steps ?? [];
 
   useEffect(() => {
     document.title = 'Prayer guide · Wudu, salah & ghusl — RevertNote';
@@ -153,7 +237,7 @@ export function Guides() {
           <header className="guide-panel-head">
             <div>
               <p className="eyebrow">
-                {guide.steps.length} steps · {guide.subtitle}
+                {guide.id === 'salah' ? `${flow.count} rakʿah · ${flow.prayers}` : `${steps.length} steps · ${guide.subtitle}`}
               </p>
               <h2>
                 {guide.name}
@@ -167,18 +251,22 @@ export function Guides() {
           </header>
           <p className="guide-intro">{guide.intro}</p>
 
-          <ol className="guide-steps">
-            {guide.steps.map((step, i) => (
-              <li className="g-step" key={`${guide.id}-${i}`}>
-                <StepPlate guide={guide} step={step} />
-                <div className="g-step-body">
-                  <span className="g-step-no">{String(i + 1).padStart(2, '0')}</span>
-                  <h3>{step.title}</h3>
-                  <p>{step.detail}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+          {guide.id === 'salah' ? (
+            <SalahFlowView sheet={guide.sheet} flow={flow} onFlow={setFlowId} />
+          ) : (
+            <ol className="guide-steps">
+              {steps.map((step, i) => (
+                <li className="g-step" key={`${guide.id}-${i}`}>
+                  <StepPlate guide={guide} step={step} />
+                  <div className="g-step-body">
+                    <span className="g-step-no">{String(i + 1).padStart(2, '0')}</span>
+                    <h3>{step.title}</h3>
+                    <p>{step.detail}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          )}
 
           <aside className="guide-note">
             <span className="guide-note-mark" aria-hidden="true">
@@ -223,6 +311,9 @@ export function Guides() {
               </span>
               {guide.id === 'wudu' && (
                 <span className="lb-note">The blank first panel is the Bismillah — see the calligraphy above.</span>
+              )}
+              {guide.id === 'salah' && (
+                <span className="lb-note">This sheet is one rakʿah. Repeat it 2, 3 or 4 times — see the flow above.</span>
               )}
             </figcaption>
           </figure>

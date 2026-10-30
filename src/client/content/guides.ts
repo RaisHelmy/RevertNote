@@ -18,7 +18,8 @@ export type Guide = {
   intro: string;
   sheet: string;
   sheetAlt: string;
-  steps: GuideStep[];
+  /** Ordered steps for the washing guides; salah is laid out by rakʿah instead. */
+  steps?: GuideStep[];
 };
 
 export const GUIDES: Guide[] = [
@@ -85,56 +86,9 @@ export const GUIDES: Guide[] = [
     arabic: 'صَلَاة',
     subtitle: 'Prayer',
     intro:
-      'A rak‘ah is a single cycle of standing, bowing and prostrating. These are the movements, in order — the words can be learned a little at a time with your teacher.',
+      'Every prayer is the same cycle repeated two, three or four times. Choose a prayer and follow it rakʿah by rakʿah — the words are written out at each movement.',
     sheet: salahSheet,
     sheetAlt: 'Salah prayer movements: takbir, standing, bowing, prostration, sitting and salam.',
-    steps: [
-      {
-        title: 'Takbir',
-        detail: 'Raise your hands to your ears and say “Allahu akbar” to begin the prayer.',
-        cell: { row: 0, col: 0 },
-      },
-      {
-        title: 'Qiyam',
-        detail: 'Stand with your hands folded, reciting Al-Fatihah and a short surah.',
-        cell: { row: 0, col: 1 },
-      },
-      {
-        title: 'Ruku‘',
-        detail: 'Bow with a level back and hands on the knees, saying “Subhana Rabbiyal-‘Adhim”.',
-        cell: { row: 0, col: 2 },
-      },
-      {
-        title: 'I‘tidal',
-        detail: 'Rise from bowing and stand upright, saying “Sami‘allahu liman hamidah”.',
-        cell: { row: 1, col: 0 },
-      },
-      {
-        title: 'Sujud',
-        detail: 'Prostrate with forehead, nose, palms, knees and toes resting on the ground.',
-        cell: { row: 1, col: 1 },
-      },
-      {
-        title: 'Jalsa',
-        detail: 'Sit briefly between the two prostrations and ask Allah for forgiveness.',
-        cell: { row: 1, col: 2 },
-      },
-      {
-        title: 'Sujud again',
-        detail: 'Prostrate a second time, then rise for the next rak‘ah.',
-        cell: { row: 2, col: 0 },
-      },
-      {
-        title: 'Tashahhud',
-        detail: 'Sit and recite the tashahhud, raising the index finger at the testimony of faith.',
-        cell: { row: 2, col: 1 },
-      },
-      {
-        title: 'Salam',
-        detail: 'Turn your head to the right, then to the left: “Assalamu ‘alaikum wa rahmatullah”.',
-        cell: { row: 2, col: 2 },
-      },
-    ],
   },
   {
     id: 'ghusl',
@@ -186,6 +140,199 @@ export const GUIDES: Guide[] = [
         detail: 'Make sure water has reached the whole body, then step away clean and ready to pray.',
         cell: { row: 2, col: 1 },
       },
+    ],
+  },
+];
+
+/** What you say at a given movement. */
+export type SalahSay = { ar?: string; tr: string; en: string };
+
+export type SalahMove = {
+  title: string;
+  detail: string;
+  say?: SalahSay;
+  /** Also said, as the congregation's reply. */
+  then?: SalahSay;
+  cell: { row: 0 | 1 | 2; col: 0 | 1 | 2 };
+  tone?: 'sit' | 'end';
+};
+
+export type SalahRakaat = { n: number; recite: string; moves: SalahMove[] };
+
+export type SalahFlow = {
+  id: 'two' | 'three' | 'four';
+  count: number;
+  rakaatLabel: string;
+  prayers: string;
+  note: string;
+  rakaat: SalahRakaat[];
+};
+
+const TAKBIR: SalahSay = { ar: 'اللهُ أَكْبَرُ', tr: 'Allāhu Akbar', en: 'Allah is the greatest' };
+const AZIM: SalahSay = {
+  ar: 'سُبْحَانَ رَبِّيَ الْعَظِيمِ',
+  tr: 'Subḥāna Rabbiyal-ʿAẓīm',
+  en: 'Glory to my Lord, the Most Great',
+};
+const HAMIDAH: SalahSay = {
+  ar: 'سَمِعَ اللهُ لِمَنْ حَمِدَهُ',
+  tr: 'Samiʿallāhu liman ḥamidah',
+  en: 'Allah hears the one who praises Him',
+};
+const HAMIDAH_REPLY: SalahSay = {
+  ar: 'رَبَّنَا وَلَكَ الْحَمْدُ',
+  tr: 'Rabbanā wa lakal-ḥamd',
+  en: 'Our Lord, to You belongs all praise',
+};
+const ALA: SalahSay = {
+  ar: 'سُبْحَانَ رَبِّيَ الأَعْلَى',
+  tr: 'Subḥāna Rabbiyal-Aʿlā',
+  en: 'Glory to my Lord, the Most High',
+};
+const GHFIR: SalahSay = { ar: 'رَبِّ اغْفِرْ لِي', tr: 'Rabbighfir lī', en: 'My Lord, forgive me' };
+const TAHIYYAT: SalahSay = {
+  ar: 'التَّحِيَّاتُ لِلَّهِ…',
+  tr: 'At-Tahiyyāt',
+  en: 'All greetings of devotion are for Allah…',
+};
+const SALAM: SalahSay = {
+  ar: 'السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ',
+  tr: 'Assalāmu ʿalaykum wa raḥmatullāh',
+  en: 'Peace and Allah’s mercy be upon you',
+};
+
+/**
+ * The deck lists every rakʿah in full, so the flows repeat the cycle instead of
+ * asking a beginner to infer it. `surah` marks the first two rakʿah, where a
+ * short chapter follows Al-Fātiḥah; `after` marks where a sitting falls.
+ */
+function rakah(n: number, o: { surah: boolean; after?: 'awwal' | 'end' }): SalahRakaat {
+  const opening: SalahMove =
+    n === 1
+      ? {
+          title: 'Open with the takbir',
+          detail: 'Face the qiblah and raise your hands beside your ears.',
+          say: TAKBIR,
+          cell: { row: 0, col: 0 },
+        }
+      : {
+          title: `Rise for rakʿah ${n}`,
+          detail: 'Say the takbir and rise from prostration.',
+          say: TAKBIR,
+          cell: { row: 0, col: 0 },
+        };
+
+  const moves: SalahMove[] = [
+    opening,
+    {
+      title: 'Stand and recite',
+      detail: o.surah
+        ? 'Recite Al-Fātiḥah, then a short sūrah. Fajr is prayed aloud; Zuhr and ʿAṣr quietly.'
+        : 'Recite Al-Fātiḥah on its own — in the third and fourth rakʿah no extra sūrah is added.',
+      say: { ar: 'فَاتِحَة الْكِتَاب', tr: 'Al-Fātiḥah', en: 'The opening chapter of the Qur’an' },
+      cell: { row: 0, col: 1 },
+    },
+    {
+      title: 'Bow (rukuʿ)',
+      detail: 'Bow with a flat back, hands on the knees.',
+      say: AZIM,
+      cell: { row: 0, col: 2 },
+    },
+    {
+      title: 'Rise from bowing',
+      detail: 'Come back to full standing.',
+      say: HAMIDAH,
+      then: HAMIDAH_REPLY,
+      cell: { row: 1, col: 0 },
+    },
+    {
+      title: 'Prostrate (sujud)',
+      detail: 'Forehead, nose, palms, knees and toes on the ground.',
+      say: ALA,
+      cell: { row: 1, col: 1 },
+    },
+    {
+      title: 'Sit between the two sujuds',
+      detail: 'Sit up calmly and ask.',
+      say: GHFIR,
+      cell: { row: 1, col: 2 },
+    },
+    {
+      title: 'Prostrate again',
+      detail: 'The second sujud of the rakʿah.',
+      say: ALA,
+      cell: { row: 2, col: 0 },
+    },
+  ];
+
+  if (o.after === 'awwal') {
+    moves.push({
+      title: 'The first sitting',
+      detail: 'Sit and recite At-Tahiyyāt, then stand for the next rakʿah.',
+      say: TAHIYYAT,
+      cell: { row: 2, col: 1 },
+      tone: 'sit',
+    });
+  }
+
+  if (o.after === 'end') {
+    moves.push(
+      {
+        title: 'The final sitting',
+        detail: 'Recite At-Tahiyyāt, the blessing on the Prophet ﷺ, and a duʿā of your own.',
+        say: TAHIYYAT,
+        cell: { row: 2, col: 1 },
+        tone: 'end',
+      },
+      {
+        title: 'Close with the salam',
+        detail: 'Turn your face to the right, then to the left.',
+        say: SALAM,
+        cell: { row: 2, col: 2 },
+        tone: 'end',
+      },
+    );
+  }
+
+  return {
+    n,
+    recite: o.surah ? 'Al-Fātiḥah + a sūrah' : 'Al-Fātiḥah only',
+    moves,
+  };
+}
+
+export const SALAH_FLOWS: SalahFlow[] = [
+  {
+    id: 'two',
+    count: 2,
+    rakaatLabel: '2 rakʿah',
+    prayers: 'Fajr · Ṣubḥ',
+    note: 'The shortest prayer. You sit only once, at the very end.',
+    rakaat: [rakah(1, { surah: true }), rakah(2, { surah: true, after: 'end' })],
+  },
+  {
+    id: 'three',
+    count: 3,
+    rakaatLabel: '3 rakʿah',
+    prayers: 'Maghrib',
+    note: 'You sit after the second rakʿah for the first tashahhud, then stand for the third.',
+    rakaat: [
+      rakah(1, { surah: true }),
+      rakah(2, { surah: true, after: 'awwal' }),
+      rakah(3, { surah: false, after: 'end' }),
+    ],
+  },
+  {
+    id: 'four',
+    count: 4,
+    rakaatLabel: '4 rakʿah',
+    prayers: 'Zuhr · ʿAṣr · ʿIshāʾ',
+    note: 'Two sittings: the first tashahhud after rakʿah two, the full tashahhud at the end.',
+    rakaat: [
+      rakah(1, { surah: true }),
+      rakah(2, { surah: true, after: 'awwal' }),
+      rakah(3, { surah: false }),
+      rakah(4, { surah: false, after: 'end' }),
     ],
   },
 ];
